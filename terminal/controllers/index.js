@@ -27,3 +27,15 @@ exports.list = () => {
         });
     });
 }
+
+exports.remove = (_id) => {
+    return new Promise((resolve, reject) => {
+        Todo.remove({_id}, err => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}

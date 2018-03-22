@@ -82,7 +82,13 @@ program
     .alias('rm')
     .description('Remove TODO item by id')
     .action((id) => {
-        // TODO remove item
+        controllers.remove(id)
+            .then(data => {
+                console.log(`todo with id ${id} successfully removed`);
+            })
+            .catch(err => {
+                console.log(`error: ${err}`);
+            });
     });
 
 program
