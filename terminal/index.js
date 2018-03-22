@@ -4,8 +4,9 @@ const program = require('commander');
 const { prompt } = require('inquirer');
 const mongoose = require('mongoose');
 const controllers = require('./controllers');
+const config = require('./config');
 
-mongoose.connect(process.env.DB_HOST || 'mongodb://localhost/todos', err => {
+mongoose.connect(process.env.DB_HOST || config.DB_HOST, err => {
     if (err) console.log('error connected mongodb');
 });
 
@@ -89,7 +90,13 @@ program
     .alias('ls')
     .description('List all TODOs')
     .action(() => {
-        // TODO write todos list to the cli
+        controllers.list()
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => {
+                console.log(`error: ${err}`);
+            });
     });
 
 program
