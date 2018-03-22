@@ -50,8 +50,6 @@ const commentQuestions = [
     },
 ];
 
-const todos = [];
-
 program
     .command('create')
     .alias('cr')
@@ -60,6 +58,7 @@ program
         prompt(createQuestions).then(answers => {
             createTodo(answers)
                 .then(todo => {
+                    todo.likes = 0;
                     return controllers.create(todo);
                 })
                 .then(data => {
@@ -123,7 +122,17 @@ program
     .alias('lk')
     .description('Like TODO item')
     .action((id) => {
-        // TODO mark todo item as liked
+        controllers.getById(id)
+            .then(todo => {
+                todo.likes += 1;
+                return controllers.update(id, todo);
+            })
+            .then(() => {
+                console.log(`Like a todo with the id ${id} has successfully delivered.`);
+            })
+            .catch(err => {
+                console.log(`error: ${err}`);
+            })
     });
 
 program

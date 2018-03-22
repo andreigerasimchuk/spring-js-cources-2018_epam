@@ -47,3 +47,15 @@ exports.update = (_id, todo) => {
         });
     });
 }
+
+exports.getById = (_id) => {
+    return new Promise((resolve, reject) => {
+        Todo.findOne({_id}, (err, todo) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(todo);
+            }
+        });
+    });
+}
