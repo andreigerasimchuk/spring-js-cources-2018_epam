@@ -5,7 +5,7 @@ const { prompt } = require('inquirer');
 const mongoose = require('mongoose');
 const controllers = require('./controllers');
 const config = require('./config');
-const { createTodo } = require('./controllers/validation');
+const { createTodo, validComment } = require('./controllers/validation');
 
 mongoose.connect(process.env.DB_HOST || config.DB_HOST, err => {
     if (err) console.log('error connected mongodb');
@@ -132,7 +132,7 @@ program
             })
             .catch(err => {
                 console.log(`error: ${err}`);
-            })
+            });
     });
 
 program
@@ -141,7 +141,20 @@ program
     .description('Comment TODO item')
     .action((id) => {
         prompt(commentQuestions).then(answers => {
-            // TODO comment for todo item
+            validComment(answers)
+                .then(() => {
+                    return controllers.getById(id);
+                })
+                .then(todo => {
+                    todo.comments.push(answers.comment);
+                    return controllers.update(id, todo);  
+                })
+                .then(() => {
+                    console.log(`Comment a todo with the id ${id} has successfully added.`);    
+                })
+                .catch(err => {
+                    console.log(`error: ${err}`);
+                });
         });
     });
 

@@ -11,3 +11,13 @@ exports.createTodo = (answers) => {
         }
     });
 }
+
+exports.validComment = (answers) => {
+    return new Promise((resolve, reject) => {
+        if (answers.comment == '') {
+            reject('Comment must be filled.');
+        } else {
+            resolve();
+        }
+    });
+}
