@@ -5,6 +5,7 @@ const { prompt } = require('inquirer');
 const mongoose = require('mongoose');
 const controllers = require('./controllers');
 const config = require('./config');
+const { createTodo } = require('./controllers/validation');
 
 mongoose.connect(process.env.DB_HOST || config.DB_HOST, err => {
     if (err) console.log('error connected mongodb');
@@ -57,7 +58,10 @@ program
     .description('Create new TODO item')
     .action(() => {
         prompt(createQuestions).then(answers => {
-            controllers.create(answers)
+            createTodo(answers)
+                .then(todo => {
+                    return controllers.create(todo);
+                })
                 .then(data => {
                     console.log(`todo successfully added ${data}`);
                 })
@@ -73,7 +77,16 @@ program
     .description('Update TODO item')
     .action((id) => {
         prompt(updateQuestions).then(answers => {
-            // TODO update todo
+            createTodo(answers)
+                .then(todo => {
+                    return controllers.update(id, todo);
+                })
+                .then(() => {
+                    console.log(`todo with id ${id} successfully update`);
+                })
+                .catch(err => {
+                    console.log(`error: ${err}`);
+                });
         });
     });
 
@@ -83,7 +96,7 @@ program
     .description('Remove TODO item by id')
     .action((id) => {
         controllers.remove(id)
-            .then(data => {
+            .then(() => {
                 console.log(`todo with id ${id} successfully removed`);
             })
             .catch(err => {

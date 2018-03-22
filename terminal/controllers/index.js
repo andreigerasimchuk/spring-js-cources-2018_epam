@@ -1,10 +1,6 @@
 const Todo = require('../models');
 
-exports.create = (answers) => {
-    const todo = {};
-    todo.title = answers.title;
-    todo.description = answers.description;
-
+exports.create = (todo) => {
     return new Promise((resolve, reject) => {
         Todo.create(todo, (err, data) => {
             if (err) {
@@ -31,6 +27,18 @@ exports.list = () => {
 exports.remove = (_id) => {
     return new Promise((resolve, reject) => {
         Todo.remove({_id}, err => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
+exports.update = (_id, todo) => {
+    return new Promise((resolve, reject) => {
+        Todo.update({_id}, todo, err => {
             if (err) {
                 reject(err);
             } else {
