@@ -26,9 +26,11 @@ exports.list = () => {
 
 exports.remove = (_id) => {
     return new Promise((resolve, reject) => {
-        Todo.remove({_id}, err => {
+        Todo.remove({ _id }, (err, res) => {
             if (err) {
                 reject(err);
+            } else if (res.n === 0) {
+                reject(`Todo with id ${_id} not found.`);
             } else {
                 resolve();
             }
@@ -38,9 +40,11 @@ exports.remove = (_id) => {
 
 exports.update = (_id, todo) => {
     return new Promise((resolve, reject) => {
-        Todo.update({_id}, todo, err => {
+        Todo.update({ _id }, todo, (err, res) => {
             if (err) {
                 reject(err);
+            } else if (res.n === 0) {
+                reject(`Todo with id ${_id} not found.`);
             } else {
                 resolve();
             }
@@ -50,9 +54,11 @@ exports.update = (_id, todo) => {
 
 exports.getById = (_id) => {
     return new Promise((resolve, reject) => {
-        Todo.findOne({_id}, (err, todo) => {
+        Todo.findOne({ _id }, (err, todo) => {
             if (err) {
                 reject(err);
+            } else if (todo === null) {
+                reject(`Todo with id ${_id} not found.`);
             } else {
                 resolve(todo);
             }
