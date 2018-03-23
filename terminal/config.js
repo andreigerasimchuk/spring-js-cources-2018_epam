@@ -1,3 +1,3 @@
 module.exports= {
-    'DB_HOST': 'mongodb://localhost/todos'
+    DB_HOST: 'mongodb://localhost/todos'
   };
