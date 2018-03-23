@@ -2,14 +2,6 @@
 
 const program = require('commander');
 const { prompt } = require('inquirer');
-const mongoose = require('mongoose');
-const controllers = require('./controllers');
-const config = require('./config');
-const { createTodo, validComment } = require('./controllers/validation');
-
-mongoose.connect(process.env.DB_HOST || config.DB_HOST, err => {
-    if (err) console.log('error connected mongodb');
-});
 
 program
     .version('0.0.1')
@@ -56,17 +48,7 @@ program
     .description('Create new TODO item')
     .action(() => {
         prompt(createQuestions).then(answers => {
-            createTodo(answers)
-                .then(todo => {
-                    todo.likes = 0;
-                    return controllers.create(todo);
-                })
-                .then(data => {
-                    console.log(`todo successfully added ${data}`);
-                })
-                .catch(err => {
-                    console.log(`error: ${err}`);
-                });
+
         });
     });
 
@@ -76,16 +58,7 @@ program
     .description('Update TODO item')
     .action((id) => {
         prompt(updateQuestions).then(answers => {
-            createTodo(answers)
-                .then(todo => {
-                    return controllers.update(id, todo);
-                })
-                .then(() => {
-                    console.log(`todo with id ${id} successfully update`);
-                })
-                .catch(err => {
-                    console.log(`error: ${err}`);
-                });
+;
         });
     });
 
@@ -94,13 +67,7 @@ program
     .alias('rm')
     .description('Remove TODO item by id')
     .action((id) => {
-        controllers.remove(id)
-            .then(() => {
-                console.log(`todo with id ${id} successfully removed`);
-            })
-            .catch(err => {
-                console.log(`error: ${err}`);
-            });
+
     });
 
 program
@@ -108,13 +75,7 @@ program
     .alias('ls')
     .description('List all TODOs')
     .action(() => {
-        controllers.list()
-            .then(data => {
-                console.log(data);
-            })
-            .catch(err => {
-                console.log(`error: ${err}`);
-            });
+
     });
 
 program
@@ -122,17 +83,7 @@ program
     .alias('lk')
     .description('Like TODO item')
     .action((id) => {
-        controllers.getById(id)
-            .then(todo => {
-                todo.likes += 1;
-                return controllers.update(id, todo);
-            })
-            .then(() => {
-                console.log(`Like a todo with the id ${id} has successfully delivered.`);
-            })
-            .catch(err => {
-                console.log(`error: ${err}`);
-            });
+
     });
 
 program
@@ -141,20 +92,7 @@ program
     .description('Comment TODO item')
     .action((id) => {
         prompt(commentQuestions).then(answers => {
-            validComment(answers)
-                .then(() => {
-                    return controllers.getById(id);
-                })
-                .then(todo => {
-                    todo.comments.push(answers.comment);
-                    return controllers.update(id, todo);  
-                })
-                .then(() => {
-                    console.log(`Comment a todo with the id ${id} has successfully added.`);    
-                })
-                .catch(err => {
-                    console.log(`error: ${err}`);
-                });
+
         });
     });
 
