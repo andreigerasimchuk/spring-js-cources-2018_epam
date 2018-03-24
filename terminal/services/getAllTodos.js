@@ -12,6 +12,9 @@ exports.getAllTodos = () => {
         .then(data => {
             return getJsonObj(data);
         })
+        .then(obj => {
+            return obj.todos;
+        })
         .catch(err => {
             console.log(`error: ${err}`);
         });

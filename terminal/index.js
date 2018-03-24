@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const { prompt } = require('inquirer');
-const { create, list } = require('./controllers');
+const { create, list, remove } = require('./controllers');
 
 program
     .version('0.0.1')
@@ -65,9 +65,7 @@ program
     .command('remove <id>')
     .alias('rm')
     .description('Remove TODO item by id')
-    .action((id) => {
-
-    });
+    .action((id) => remove(id));
 
 program
     .command('list')

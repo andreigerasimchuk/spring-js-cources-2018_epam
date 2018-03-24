@@ -3,13 +3,15 @@ const { writeFile, getAllTodos } = require('../services');
 
 exports.create = (answers) => {
     getAllTodos()
-        .then(obj => {
+        .then(todos => {
             let todo = {
                 ...answers,
                 id: uuid()
             }
-            obj.todos.push(todo);
-            writeFile(JSON.stringify(obj))
+            return [...todos, todo];
+        })
+        .then(todos => {
+            writeFile(JSON.stringify({ todos }))
         })
         .catch(err => {
             console.log(`error: ${err}`);

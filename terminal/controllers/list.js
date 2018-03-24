@@ -2,8 +2,8 @@ const { getAllTodos } = require('../services');
 
 exports.list = (answers) => {
     getAllTodos()
-        .then(obj => {
-            console.info(obj);
+        .then(todos => {
+            console.info(todos);
         })
         .catch(err => {
             console.log(`error: ${err}`);
