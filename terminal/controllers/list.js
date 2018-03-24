@@ -1,4 +1,4 @@
-const { getAllTodos } = require('../services');
+const { getAllTodos, printEror } = require('../services');
 
 exports.list = (answers) => {
     getAllTodos()
@@ -6,6 +6,6 @@ exports.list = (answers) => {
             console.info(todos);
         })
         .catch(err => {
-            console.log(`error: ${err}`);
+            printEror(err);
         });
 }

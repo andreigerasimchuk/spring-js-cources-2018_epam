@@ -23,6 +23,10 @@ exports.findCurrentTodo = (id, items) => {
     const index = todos.findIndex(todos => todos.id === id);
     const todo = todos[index];
 
+    if (index === -1) {
+        throw new Error(`Todo with id ${id} not found.`);
+    }
+
     return { index, todo, todos };
 }
 
@@ -38,4 +42,12 @@ exports.createTodo = (item, change, comment = []) => {
     todo.comments = [...todo.comments, ...comment];
 
     return todo;
+}
+
+exports.print = (message, id) => {
+    console.info(`${message} id: ${id} `)
+}
+
+exports.printEror = (err) => {
+    console.error(`error: ${err.message}`)
 }

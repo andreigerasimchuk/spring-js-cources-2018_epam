@@ -1,15 +1,17 @@
-const { writeFile, getAllTodos, createTodo } = require('../services');
+const { writeFile, getAllTodos, createTodo, print, printEror} = require('../services');
 
 exports.create = (answers) => {
+    let todo = {};
     getAllTodos()
         .then(todos => {
-            const todo = createTodo({}, answers);
+            todo = createTodo({}, answers);
             return [...todos, todo];
         })
         .then(todos => {
             writeFile(JSON.stringify({ todos }))
+            print('The todo was successfully created.', todo.id);
         })
         .catch(err => {
-            console.log(`error: ${err}`);
+            printEror(err);
         });
 }

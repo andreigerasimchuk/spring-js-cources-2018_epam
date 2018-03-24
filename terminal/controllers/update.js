@@ -1,4 +1,10 @@
-const { getAllTodos, writeFile, findCurrentTodo, createTodo } = require('../services');
+const { 
+    getAllTodos, 
+    writeFile, 
+    findCurrentTodo, 
+    createTodo, 
+    print, 
+    printEror } = require('../services');
 
 exports.update = (id, change, comment = []) => {
     getAllTodos()
@@ -11,8 +17,9 @@ exports.update = (id, change, comment = []) => {
         })
         .then(todos => {
             writeFile(JSON.stringify({ todos }));
+            print('The todo was successfully updated.', id);
         })
         .catch(err => {
-            console.log(`error: ${err}`);
+            printEror(err);
         });
 }
