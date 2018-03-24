@@ -2,6 +2,7 @@
 
 const program = require('commander');
 const { prompt } = require('inquirer');
+const { create } = require('./controllers');
 
 program
     .version('0.0.1')
@@ -47,9 +48,7 @@ program
     .alias('cr')
     .description('Create new TODO item')
     .action(() => {
-        prompt(createQuestions).then(answers => {
-
-        });
+        prompt(createQuestions).then(answers => create(answers));
     });
 
 program
@@ -58,7 +57,7 @@ program
     .description('Update TODO item')
     .action((id) => {
         prompt(updateQuestions).then(answers => {
-;
+
         });
     });
 
