@@ -6,7 +6,8 @@ const {
     create,
     list,
     remove,
-    like } = require('./controllers');
+    like,
+    comment } = require('./controllers');
 
 program
     .version('0.0.1')
@@ -88,9 +89,7 @@ program
     .alias('cmt')
     .description('Comment TODO item')
     .action((id) => {
-        prompt(commentQuestions).then(answers => {
-
-        });
+        prompt(commentQuestions).then(answers => comment(id, answers.comment));
     });
 
 program.parse(process.argv);
