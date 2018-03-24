@@ -2,12 +2,7 @@
 
 const program = require('commander');
 const { prompt } = require('inquirer');
-const {
-    create,
-    list,
-    remove,
-    like,
-    comment } = require('./controllers');
+const { create, update, remove, list } = require('./controllers');
 
 program
     .version('0.0.1')
@@ -61,9 +56,7 @@ program
     .alias('upd')
     .description('Update TODO item')
     .action((id) => {
-        prompt(updateQuestions).then(answers => {
-
-        });
+        prompt(updateQuestions).then(answers => update(id, answers));
     });
 
 program
@@ -82,14 +75,20 @@ program
     .command('like <id>')
     .alias('lk')
     .description('Like TODO item')
-    .action((id) => like(id));
+    .action((id) => update(id, { isLiked: true }));
+
+program
+    .command('unlike <id>')
+    .alias('ulk')
+    .description('Unlike TODO item')
+    .action((id) => update(id, { isLiked: false }));
 
 program
     .command('comment <id>')
     .alias('cmt')
     .description('Comment TODO item')
     .action((id) => {
-        prompt(commentQuestions).then(answers => comment(id, answers.comment));
+        prompt(commentQuestions).then(answers => update(id, {}, [answers.comment]));
     });
 
 program.parse(process.argv);

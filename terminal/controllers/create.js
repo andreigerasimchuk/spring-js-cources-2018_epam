@@ -1,15 +1,9 @@
-const uuid = require('uuid/v1');
-const { writeFile, getAllTodos } = require('../services');
+const { writeFile, getAllTodos, createTodo } = require('../services');
 
 exports.create = (answers) => {
     getAllTodos()
         .then(todos => {
-            let todo = {
-                ...answers,
-                isLiked: false,
-                comments: [],
-                id: uuid()
-            }
+            const todo = createTodo({}, answers);
             return [...todos, todo];
         })
         .then(todos => {
