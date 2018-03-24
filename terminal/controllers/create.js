@@ -6,6 +6,7 @@ exports.create = (answers) => {
         .then(todos => {
             let todo = {
                 ...answers,
+                isLike: false,
                 id: uuid()
             }
             return [...todos, todo];

@@ -2,7 +2,11 @@
 
 const program = require('commander');
 const { prompt } = require('inquirer');
-const { create, list, remove } = require('./controllers');
+const {
+    create,
+    list,
+    remove,
+    like } = require('./controllers');
 
 program
     .version('0.0.1')
@@ -77,9 +81,7 @@ program
     .command('like <id>')
     .alias('lk')
     .description('Like TODO item')
-    .action((id) => {
-
-    });
+    .action((id) => like(id));
 
 program
     .command('comment <id>')
