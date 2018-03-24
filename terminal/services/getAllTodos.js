@@ -1,8 +1,5 @@
-const {
-    openFile,
-    readFile,
-    parseValidJson,
-    getJsonObj } = require('./index');
+const { openFile, readFile } = require('./io');
+const { parseValidJson, getJsonObj } = require('./validation');
 
 exports.getAllTodos = () => {
     return openFile()

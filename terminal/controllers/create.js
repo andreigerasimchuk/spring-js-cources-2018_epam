@@ -1,10 +1,7 @@
 const uuid = require('uuid/v1');
-const { writeFile } = require('../services');
-
-const { getAllTodos } = require('../services/getTodos');
+const { writeFile, getAllTodos } = require('../services');
 
 exports.create = (answers) => {
-
     getAllTodos()
         .then(obj => {
             let todo = {
