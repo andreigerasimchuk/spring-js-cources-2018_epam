@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { removeTodo } = require('./controllers/remove');
+const { removeTodo } = require('../controllers/remove');
 
 const todos = [
     {
@@ -48,4 +48,3 @@ describe('todo', () => {
         ]);
     });
 });
-
