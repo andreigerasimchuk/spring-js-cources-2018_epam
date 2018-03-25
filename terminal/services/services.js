@@ -45,9 +45,22 @@ exports.createTodo = (item, change, comment = []) => {
 }
 
 exports.print = (message, id) => {
+    console.info();
     console.info(`${message} id: ${id} `);
 }
 
-exports.printEror = (err) => {
+exports.printError = (err) => {
+    console.info();
     console.error(`error: ${err.message}`);
+}
+
+exports.printTodos = (todos = []) => {
+    console.info();
+    todos.forEach((todo, index) => {
+        console.info(`------- todo # ${index + 1} -------`);
+        for (key in todo) {
+            console.info(`${key}: ${todo[key]}`);
+        }
+        console.info();
+    });
 }

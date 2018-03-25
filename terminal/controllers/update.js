@@ -4,19 +4,21 @@ const {
     findCurrentTodo,
     createTodo,
     print,
-    printEror } = require('../services');
+    printError,
+    printTodos } = require('../services');
 
 exports.update = (id, change, comment = []) => {
     getAllTodos()
         .then(todos => {
-            return updateTodo(id, todos, change, comment);
+            return this.updateTodo(id, todos, change, comment);
         })
-        .then(todos => {
-            writeFile(JSON.stringify({ todos }));
+        .then(obj => {
+            writeFile(JSON.stringify({ todos: obj.todos }));
             print('The todo was successfully updated.', id);
+            printTodos([obj.todo]);
         })
         .catch(err => {
-            printEror(err);
+            printError(err);
         });
 }
 
@@ -25,5 +27,11 @@ exports.updateTodo = (id, todos, change, comment) => {
     const updatedTodo = createTodo(currentTodo.todo, change, comment)
 
     currentTodo.todos.splice(currentTodo.index, 1, updatedTodo);
-    return currentTodo.todos;
+
+    const obj = {
+        todo: updatedTodo,
+        todos: currentTodo.todos 
+    };
+
+    return obj;
 }

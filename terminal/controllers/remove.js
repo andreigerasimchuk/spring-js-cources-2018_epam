@@ -1,16 +1,16 @@
-const { getAllTodos, writeFile, findCurrentTodo, print, printEror } = require('../services');
+const { getAllTodos, writeFile, findCurrentTodo, print, printError } = require('../services');
 
 exports.remove = (id) => {
     getAllTodos()
         .then(todos => {
-            return removeTodo(id, todos);
+            return this.removeTodo(id, todos);
         })
         .then(todos => {
             writeFile(JSON.stringify({ todos }));
             print('The todo was successfully removed.', id);
         })
         .catch(err => {
-            printEror(err);
+            printError(err);
         });
 }
 

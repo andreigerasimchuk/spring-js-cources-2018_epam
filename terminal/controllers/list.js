@@ -1,11 +1,11 @@
-const { getAllTodos, printEror } = require('../services');
+const { getAllTodos, printError, printTodos } = require('../services');
 
 exports.list = (answers) => {
     getAllTodos()
         .then(todos => {
-            console.info(todos);
+            printTodos(todos);
         })
         .catch(err => {
-            printEror(err);
+            printError(err);
         });
 }

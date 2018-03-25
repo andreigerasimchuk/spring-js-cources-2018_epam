@@ -1,6 +1,11 @@
 const { openFile, readFile, writeFile } = require('./io');
 const { getAllTodos } = require('./getAllTodos');
-const { findCurrentTodo, createTodo, print, printEror } = require('./services');
+const { 
+    findCurrentTodo, 
+    createTodo, 
+    print, 
+    printError, 
+    printTodos } = require('./services');
 
 module.exports = {
     openFile,
@@ -10,5 +15,6 @@ module.exports = {
     findCurrentTodo,
     createTodo,
     print,
-    printEror
+    printError,
+    printTodos
 }

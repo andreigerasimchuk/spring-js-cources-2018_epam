@@ -1,4 +1,10 @@
-const { writeFile, getAllTodos, createTodo, print, printEror} = require('../services');
+const { 
+    writeFile, 
+    getAllTodos, 
+    createTodo, 
+    print, 
+    printError, 
+    printTodos} = require('../services');
 
 exports.create = (answers) => {
     let todo = {};
@@ -10,8 +16,9 @@ exports.create = (answers) => {
         .then(todos => {
             writeFile(JSON.stringify({ todos }))
             print('The todo was successfully created.', todo.id);
+            printTodos([todo]);
         })
         .catch(err => {
-            printEror(err);
+            printError(err);
         });
 }

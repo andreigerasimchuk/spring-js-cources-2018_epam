@@ -1,5 +1,5 @@
 const { openFile, readFile } = require('./io');
-const { parseValidJson, getJsonObj, printEror } = require('./services');
+const { parseValidJson, getJsonObj, printError } = require('./services');
 
 exports.getAllTodos = () => {
     return openFile()
@@ -12,6 +12,6 @@ exports.getAllTodos = () => {
             return obj.todos;
         })
         .catch(err => {
-            printEror(err);
+            printError(err);
         });
 }

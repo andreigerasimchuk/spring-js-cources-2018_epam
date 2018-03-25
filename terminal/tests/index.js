@@ -56,7 +56,7 @@ describe('todo', () => {
             description: 'tests description'
         };
         const result = updateTodo('ad6ce6b0-2f4e-11e8-a6df-3d1a4aa104ba', currentTodos, answers);
-        assert.deepEqual(result, [
+        assert.deepEqual(result.todos, [
             {
                 "title": "test1",
                 "description": "test1",
@@ -88,7 +88,7 @@ describe('todo', () => {
 
         currentTodos[1].isLiked = true;
 
-        assert.deepEqual(result, currentTodos);
+        assert.deepEqual(result.todos, currentTodos);
     });
 
     it('unLike todo by id', () => {
@@ -98,7 +98,7 @@ describe('todo', () => {
 
         currentTodos[0].isLiked = false;
 
-        assert.deepEqual(result, currentTodos);
+        assert.deepEqual(result.todos, currentTodos);
     });
 
     it('add a comment to the todd on id', () => {
@@ -108,6 +108,6 @@ describe('todo', () => {
 
         currentTodos[1].comments.push('new comment');
 
-        assert.deepEqual(result, currentTodos);
+        assert.deepEqual(result.todos, currentTodos);
     });
 });
