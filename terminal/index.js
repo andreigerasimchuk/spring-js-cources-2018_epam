@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const { prompt } = require('inquirer');
-const { create, update, remove, list } = require('./controllers');
+const { create, update, remove, list, read } = require('./controllers');
 
 program
     .version('0.0.1')
@@ -50,6 +50,12 @@ program
     .action(() => {
         prompt(createQuestions).then(answers => create(answers));
     });
+
+program
+    .command('read <id>')
+    .alias('rd')
+    .description('Read TODO item')
+    .action((id) => read(id));
 
 program
     .command('update <id>')

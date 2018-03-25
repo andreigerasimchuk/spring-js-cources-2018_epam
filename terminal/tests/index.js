@@ -1,6 +1,7 @@
 const assert = require('assert');
 const { removeTodo } = require('../controllers/remove');
 const { updateTodo } = require('../controllers/update');
+const { readTodo } = require('../controllers/read');
 
 const todos = [
     {
@@ -101,7 +102,7 @@ describe('todo', () => {
         assert.deepEqual(result.todos, currentTodos);
     });
 
-    it('add a comment to the todd on id', () => {
+    it('add a comment to the todщ on id', () => {
         const currentTodos = [...todos];
         const comment = ['new comment'];
         const result = updateTodo('ad6ce6b0-2f4e-11e8-a6df-3d1a4aa104ba', currentTodos, {}, comment);
@@ -109,5 +110,11 @@ describe('todo', () => {
         currentTodos[1].comments.push('new comment');
 
         assert.deepEqual(result.todos, currentTodos);
+    });
+    it('read todo by id', () => {
+        const currentTodos = [...todos];
+        const result = readTodo('e0415520-2f4f-11e8-b501-2524686651e9', currentTodos);
+
+        assert.deepEqual(result, currentTodos[2]);
     });
 });

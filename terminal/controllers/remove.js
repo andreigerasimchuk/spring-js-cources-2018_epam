@@ -1,4 +1,9 @@
-const { getAllTodos, writeFile, findCurrentTodo, print, printError } = require('../services');
+const { 
+    getAllTodos, 
+    writeFile, 
+    findCurrentTodo, 
+    print, 
+    printError } = require('../services');
 
 exports.remove = (id) => {
     getAllTodos()
