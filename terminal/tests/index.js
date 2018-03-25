@@ -102,7 +102,7 @@ describe('todo', () => {
         assert.deepEqual(result.todos, currentTodos);
     });
 
-    it('add a comment to the todщ on id', () => {
+    it('add a comment to the todo on id', () => {
         const currentTodos = [...todos];
         const comment = ['new comment'];
         const result = updateTodo('ad6ce6b0-2f4e-11e8-a6df-3d1a4aa104ba', currentTodos, {}, comment);

@@ -1,5 +1,7 @@
 const fs = require('fs');
-const STORAGE_PATH = './store.json';
+const path = require('path');
+
+const STORAGE_PATH = path.resolve('./store.json');
 
 exports.openFile = () => {
     return new Promise((resolve, reject) => {
