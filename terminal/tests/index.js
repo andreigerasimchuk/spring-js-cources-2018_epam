@@ -80,4 +80,34 @@ describe('todo', () => {
             }
         ]);
     });
+
+    it('like todo by id', () => {
+        const currentTodos = [...todos];
+        const answers = { isLiked: true };
+        const result = updateTodo('ad6ce6b0-2f4e-11e8-a6df-3d1a4aa104ba', currentTodos, answers);
+
+        currentTodos[1].isLiked = true;
+
+        assert.deepEqual(result, currentTodos);
+    });
+
+    it('unLike todo by id', () => {
+        const currentTodos = [...todos];
+        const answers = { isLiked: false };
+        const result = updateTodo('d5621df0-2f4b-11e8-af19-4159c8d704e5', currentTodos, answers);
+
+        currentTodos[0].isLiked = false;
+
+        assert.deepEqual(result, currentTodos);
+    });
+
+    it('add a comment to the todd on id', () => {
+        const currentTodos = [...todos];
+        const comment = ['new comment'];
+        const result = updateTodo('ad6ce6b0-2f4e-11e8-a6df-3d1a4aa104ba', currentTodos, {}, comment);
+
+        currentTodos[1].comments.push('new comment');
+
+        assert.deepEqual(result, currentTodos);
+    });
 });

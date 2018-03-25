@@ -37,7 +37,7 @@ exports.createTodo = (item, change, comment = []) => {
         id: uuid(),
         ...item,
         ...change
-    }
+    };
 
     todo.comments = [...todo.comments, ...comment];
 
@@ -45,9 +45,9 @@ exports.createTodo = (item, change, comment = []) => {
 }
 
 exports.print = (message, id) => {
-    console.info(`${message} id: ${id} `)
+    console.info(`${message} id: ${id} `);
 }
 
 exports.printEror = (err) => {
-    console.error(`error: ${err.message}`)
+    console.error(`error: ${err.message}`);
 }
