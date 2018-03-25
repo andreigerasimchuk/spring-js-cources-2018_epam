@@ -22,9 +22,9 @@ exports.update = (id, change, comment = []) => {
         });
 }
 
-exports.updateTodo = (id, todos, change, comment) => {
+exports.updateTodo = (id, todos, change, comment = []) => {
     const currentTodo = findCurrentTodo(id, todos);
-    const updatedTodo = createTodo(currentTodo.todo, change, comment)
+    const updatedTodo = createTodo(currentTodo.todo, change, comment);
 
     currentTodo.todos.splice(currentTodo.index, 1, updatedTodo);
 

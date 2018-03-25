@@ -3,11 +3,11 @@ const STORAGE_PATH = './store.json';
 
 exports.openFile = () => {
     return new Promise((resolve, reject) => {
-        fs.open(STORAGE_PATH, 'a+', (err, fd) => {
+        fs.open(STORAGE_PATH, 'a+', err => {
             if (err) {
                 reject(err);
             } else {
-                resolve(fd);
+                resolve();
             }
         });
     });

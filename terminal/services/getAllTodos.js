@@ -3,11 +3,11 @@ const { parseValidJson, getJsonObj, printError } = require('./services');
 
 exports.getAllTodos = () => {
     return openFile()
-        .then(data => {
+        .then(() => {
             return readFile();
         })
-        .then(data => {
-            const validJson = parseValidJson(data);
+        .then(string => {
+            const validJson = parseValidJson(string);
             const obj = getJsonObj(validJson);
             return obj.todos;
         })
