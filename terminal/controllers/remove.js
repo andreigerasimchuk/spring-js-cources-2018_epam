@@ -3,16 +3,18 @@ const {
     writeFile, 
     findCurrentTodo, 
     print, 
-    printError } = require('../services');
+    printError,
+    printTodos } = require('../services');
 
 exports.remove = (id) => {
     getAllTodos()
         .then(todos => {
             return this.removeTodo(id, todos);
         })
-        .then(todos => {
-            writeFile(JSON.stringify({ todos }));
+        .then(obj => {
+            writeFile(JSON.stringify({ todos: obj.todos }));
             print('The todo was successfully removed.', id);
+            printTodos([obj.todo]);
         })
         .catch(err => {
             printError(err);
@@ -20,8 +22,13 @@ exports.remove = (id) => {
 }
 
 exports.removeTodo = (id, todos) => {
-    const currentTodo = findCurrentTodo(id, todos);
+    const currentTodo = findCurrentTodo(id, todos); 
     currentTodo.todos.splice(currentTodo.index, 1);
 
-    return currentTodo.todos;
+    const obj = {
+        todo: currentTodo.todo,
+        todos: currentTodo.todos
+    };
+
+    return obj;
 }

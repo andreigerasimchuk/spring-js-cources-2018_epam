@@ -24,7 +24,7 @@ exports.findCurrentTodo = (id, items) => {
     const todo = todos[index];
 
     if (index === -1) {
-        throw new Error(`Todo with id ${id} not found.`);
+        throw new Error(`TODO item not found. id: ${id}`);
     }
 
     return { index, todo, todos };

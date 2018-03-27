@@ -32,7 +32,7 @@ describe('todo', () => {
     it('remove todo by id', () => {
         const currentTodos = [...todos];
         const result = removeTodo('e0415520-2f4f-11e8-b501-2524686651e9', currentTodos);
-        assert.deepEqual(result, [
+        assert.deepEqual(result.todos, [
             {
                 "title": "test1",
                 "description": "test1",
