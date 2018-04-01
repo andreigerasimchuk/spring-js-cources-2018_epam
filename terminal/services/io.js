@@ -8,9 +8,10 @@ exports.openFile = () => {
         fs.open(STORAGE_PATH, 'a+', err => {
             if (err) {
                 reject(err);
-            } else {
-                resolve();
+                return;
             }
+
+            resolve();
         });
     });
 }
@@ -20,9 +21,10 @@ exports.readFile = () => {
         fs.readFile(STORAGE_PATH, 'utf8', (err, data) => {
             if (err) {
                 reject(err);
-            } else {
-                resolve(data);
+                return;
             }
+
+            resolve(data);
         });
     });
 }
@@ -32,9 +34,10 @@ exports.writeFile = (data) => {
         fs.writeFile(STORAGE_PATH, data, (err) => {
             if (err) {
                 reject(err);
-            } else {
-                resolve();
+                return;
             }
+            
+            resolve();
         });
     });
 }
