@@ -9,13 +9,13 @@ exports.parseValidJson = (str) => {
     }
 }
 
-exports.getJsonObj = (data) => {
-    if (data['todos'] === undefined) {
-        data.todos = [];
-    } else if (!Array.isArray(data['todos'])) {
-        data.todos = [];
+exports.getJsonObj = (storage) => {
+    if (storage['todos'] === undefined) {
+        storage.todos = [];
+    } else if (!Array.isArray(storage['todos'])) {
+        storage.todos = [];
     }
-    return data;
+    return storage;
 }
 
 exports.findCurrentTodo = (id, items) => {

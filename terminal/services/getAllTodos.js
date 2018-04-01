@@ -8,8 +8,8 @@ exports.getAllTodos = () => {
         })
         .then(string => {
             const validJson = parseValidJson(string);
-            const obj = getJsonObj(validJson);
-            return obj.todos;
+            const storage = getJsonObj(validJson);
+            return storage.todos;
         })
         .catch(err => {
             printError(err);

@@ -11,10 +11,10 @@ exports.remove = (id) => {
         .then(todos => {
             return this.removeTodo(id, todos);
         })
-        .then(obj => {
-            writeFile(JSON.stringify({ todos: obj.todos }));
+        .then(storage => {
+            writeFile(JSON.stringify({ todos: storage.todos }));
             print('The todo was successfully removed.', id);
-            printTodos([obj.todo]);
+            printTodos([storage.todo]);
         })
         .catch(err => {
             printError(err);
@@ -25,10 +25,10 @@ exports.removeTodo = (id, todos) => {
     const currentTodo = findCurrentTodo(id, todos); 
     currentTodo.todos.splice(currentTodo.index, 1);
 
-    const obj = {
+    const storage = {
         todo: currentTodo.todo,
         todos: currentTodo.todos
     };
 
-    return obj;
+    return storage;
 }
