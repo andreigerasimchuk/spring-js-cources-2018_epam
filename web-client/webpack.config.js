@@ -11,10 +11,10 @@ module.exports = {
   module: {
     rules: [
       {
-        'extends"': 'airbnb',
-        env: {
-          browser: true,
-        },
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
       },
       {
         test: /\.jsx?$/,
