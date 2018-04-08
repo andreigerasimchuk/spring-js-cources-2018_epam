@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/andreigerasimchuk/spring-js-cources-epam-2018/issues"
   },
-  "homepage": "https://github.com/andreigerasimchuk/spring-js-cources-epam-2018#readme"
+  "homepage": "https://github.com/andreigerasimchuk/spring-js-cources-epam-2018#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.11",
+    "style-loader": "^0.20.3",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
+  }
 }
