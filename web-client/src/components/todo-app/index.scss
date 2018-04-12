@@ -1,0 +1,10 @@
+$bg-color: #eee;
+
+.page-wrap {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 80vw;
+    min-height: 80vh;
+}
