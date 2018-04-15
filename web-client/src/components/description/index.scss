@@ -1,4 +1,53 @@
 .todo-description {
     flex: 12;
-    border: 2px solid red;
+}
+
+$bg-layer-color: #b3b3b3;
+.todo {
+    display: flex;
+    flex-direction: column;
+    .todo__view {
+        flex-grow: 1;
+        .todo__view-title-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .todo__view-title {
+                margin: 20px 0 0 20px;
+                font-size: 20px;
+                font-weight: 600;
+            }
+            .list__todo-btn-remove {
+                margin-right: 25px;
+            }
+        }
+        .todo__view-description {
+            background: $bg-layer-color;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .todo__view-comments {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            .todo__view-comment {
+                margin: 5px;
+                padding: 10px;
+                border-radius: 5px;
+                background: #AFC87D;
+            }
+        }
+    }
+    .todo__comments {
+        margin: 0 20px 20px 20px;
+        display: flex;
+        .todo__comments-input {
+            flex: 10;
+            margin-right: 10px;
+        }
+        .todo__comments-btn {
+            flex: 3;
+        }
+    }
 }

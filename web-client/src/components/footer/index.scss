@@ -1,0 +1,17 @@
+$btn-color: #7C3E61;
+$btn-text-color: #f7f7f7;
+.footer {
+    width: 80vw;
+    height: 60px;
+    background-color: $btn-color;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    color: $btn-text-color;
+    .footer__author {
+        margin: 10px 0 0 0;
+    }
+    .footer__company {
+        margin: 5px 0 10px 0;
+    }
+}
