@@ -9,6 +9,7 @@ class Description extends Component {
   static propTypes = {
     addComment: PropTypes.func,
     item: PropTypes.shape({
+      
       _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
