@@ -1,35 +1,46 @@
 $bg-color: #eee;
+// .page {
+//     background-color: $bg-color;
+//     display: flex;
+//     justify-content: center;
+//     min-height: 90vh;
+//     padding-top: 25px;
+// }
 .page {
-    background-color: $bg-color;
-    display: flex;
-    justify-content: center;
+   // padding: 50px;
+   min-width: 60vw;
 }
+// input,
+// label,
+// select,
+// button,
+// textarea {
+//     margin: 0;
+//     border: 0;
+//     padding: 0;
+//     display: inline-block;
+//     vertical-align: middle;
+//     white-space: normal;
+//     background: none;
+//     line-height: 1;
+//     /* Browsers have different default form fonts */
+//     font-size: 13px;
+//     font-family: Arial;
+// }
 
-input,
-label,
-select,
-button,
-textarea {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    display: inline-block;
-    vertical-align: middle;
-    white-space: normal;
-    background: none;
-    line-height: 1;
-    /* Browsers have different default form fonts */
-    font-size: 13px;
-    font-family: Arial;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+// ul {
+//     margin: 0;
+//     padding: 0;
+//     list-style: none;
+// }
 
 body {
     margin: 0;
     padding: 0;
+    background-color: $bg-color;
+    display: flex;
+    // min-height: 100vh;
+    // display: flex;
+    justify-content: center;
+    // align-items: center;
 }

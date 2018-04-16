@@ -1,46 +1,41 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
 
-class Item extends Component {
-  static propTypes = {
-    changeItem: PropTypes.func,
-    item: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    }),
-  }
-
+export class Item extends PureComponent {
+  state = { isOpen: false };
+  handleOnClickOpen = () => {
+    this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
+  };
   render() {
-    const { item } = this.props;
-
-    this.handleChangeItem = () => {
-      const { changeItem } = this.props;
-      changeItem(item);
-    };
-
+    const {
+      title,
+      description,
+      date,
+    } = this.props.item;
     return (
-      <div className="todo-list__item" onClick={this.handleChangeItem}>
-        <div className="todo-list__todo-title ">{item.title}</div>
-        <div className="todo-list__todo-like ">
-          <i className="far fa-thumbs-up" />
+      <div className="todo-item">
+        <div className="todo-item__header">
+          {title}
         </div>
-        <div className="todo-list__todo-btn-remove " >
-          <i className="fas fa-trash" />
+        <div className="todo-item__footer">
+          <div>{date}</div>
+          <button onClick={this.handleOnClickOpen}>развернуть</button>
         </div>
+        {this.state.isOpen && (
+          <div className="todo-item__description">
+            {description}
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default connect(
-  state => ({
-    item1: state.item,
+Item.propTypes = {
+  item: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    date: PropTypes.string,
   }),
-  dispatch => ({
-    changeItem: (item) => {
-      dispatch({ type: 'CHANGE_ITEM', item });
-    },
-  }),
-)(Item);
+};

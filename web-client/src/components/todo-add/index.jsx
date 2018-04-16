@@ -1,33 +1,23 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './index.scss';
 
-class Add extends Component {
-  static propTypes = {
-    addTitle: PropTypes.func,
-  }
-
+class TodoAdd extends PureComponent {
   constructor(props) {
     super(props);
     this.titleInput = React.createRef();
     this.descriptionInput = React.createRef();
   }
-
+  handleClick = () => {
+    const { addItem } = this.props;
+    const title = this.titleInput.current.value;
+    const description = this.descriptionInput.current.value;
+    addItem({ title, description });
+  };
   render() {
-    this.handleClick = () => {
-      const { addTitle } = this.props;
-      const title = this.titleInput.current.value;
-      const description = this.descriptionInput.current.value;
-
-      addTitle(title, description);
-
-      this.titleInput.current.value = '';
-      this.descriptionInput.current.value = '';
-    };
-
     return (
-      <div>
+      <div className="todo-add">
+        todo add // todo
         <input ref={this.titleInput} />
         <textarea ref={this.descriptionInput} />
         <button onClick={this.handleClick}>add</button>
@@ -37,13 +27,14 @@ class Add extends Component {
 }
 
 export default connect(
-  state => ({
-    list: state,
-  }),
+  state => ({}),
   dispatch => ({
-    addTitle: (title, description) => {
-      const item = { title, description };
-      dispatch({ type: 'ADD', item });
+    addItem: (item) => {
+      dispatch({ type: 'ADD_ITEM', item });
     },
   }),
-)(Add);
+)(TodoAdd);
+
+TodoAdd.propTypes = {
+  addItem: PropTypes.func,
+};

@@ -1,26 +1,23 @@
-$btn-color: #7C3E61;
-$bg-color: #eee;
+// $btn-color: #7C3E61;
+// $bg-color: #eee;
+
+// .header {
+//     background-color: $btn-color;
+//     width: 80vw;
+//     height: 35px;
+//     border-top-right-radius: 10px;
+//     border-top-left-radius: 10px;
+//     display: flex;
+//     align-items: center;
+//     .header__add-todo {
+//         margin-left: 20px;
+//         color: $bg-color;
+//         font-weight: 600;
+//         text-transform: uppercase;
+//         transition: 1s;
+//     }
+// }
 
 .header {
-    background-color: $btn-color;
-    width: 80vw;
-    height: 35px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    display: flex;
-    align-items: center;
-    .header__add-todo {
-        margin-left: 20px;
-        color: $bg-color;
-        font-weight: 600;
-        text-transform: uppercase;
-        transition: 1s;
-        .header-label {
-            padding-bottom: 2px;
-            font-weight: 600;
-        }
-    }
-    .header__add-todo:hover {
-        color: #789048;
-    }
-}
+    border: 2px solid black;
+}  

@@ -1,12 +1,17 @@
-.todo-list__item {
-    display: flex;
-    padding: 10px;
-    background-color: #AFC87D;
-    border-radius: 5px;
-    margin: 5px 0px;
-    justify-content: center;
-    align-items: center;
-    .todo-list__todo-title {
-        flex-grow: 1;
+.todo-item {
+    border: 2px solid black;
+    min-height: 60px;
+    .todo-item__header {
+        border: 2px solid black;
+        min-height: 40px;
+    }
+    .todo-item__footer {
+        border: 2px solid black;
+        min-height: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .todo-item__description {
+        min-height: 60px;
     }
 }
