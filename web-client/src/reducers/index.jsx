@@ -74,10 +74,15 @@ export const list = (state = initState, action) => {
       return [...currentState];
     }
     case 'UPDATE_ITEM': {
-      return state;
+      const { _id, title, description } = action.item;
+      const currentState = [...state];
+      const index = currentState.findIndex(item => item._id === _id);
+      currentState[index].title = title;
+      currentState[index].description = description;
+      currentState[index]._id = uuid();
+      return [...currentState];
     }
     default:
       return state;
   }
 };
-

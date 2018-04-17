@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import ItemDescription from '../item-description';
 import './index.scss';
 import { Modal } from '../modal';
+import ItemUpdate from '../item-update';
 
 class Item extends PureComponent {
   state = {
     isOpen: false,
-    isUpdate: false,
   };
   handleOnClickOpen = () => {
     this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
@@ -25,9 +25,6 @@ class Item extends PureComponent {
     const { complitedItem, item } = this.props;
     complitedItem(item._id);
   }
-  handleOnUpdate = () => {
-    this.setState(state => ({ isUpdate: !state.isUpdate }));
-  }
   render() {
     const {
       title,
@@ -38,7 +35,6 @@ class Item extends PureComponent {
       comments,
       _id,
     } = this.props.item;
-    console.log(isLike);
     const itemComments = comments.map(comment => <div key={comment._id}>{comment.title}</div>);
     return (
       <div className="todo-item">
@@ -56,12 +52,7 @@ class Item extends PureComponent {
           >
             <i className="far fa-thumbs-up" />
           </div>
-          <div
-            className="todo-item__header-update"
-            onClick={this.handleOnUpdate}
-          >
-            <i className="fas fa-pencil-alt" />
-          </div>
+          <ItemUpdate _id={_id} title={title} description={description} />
           <div className="todo-item__header-remove" onClick={this.handleOnDelete}>
             <i className="fas fa-trash" />
           </div>
@@ -72,10 +63,6 @@ class Item extends PureComponent {
         </div>
         {this.state.isOpen &&
           <ItemDescription _id={_id} description={description} comments={comments} />}
-        {this.state.isUpdate &&
-          <Modal onClose={this.handleOnUpdate}>
-            test
-          </Modal >}
       </div>
     );
   }

@@ -21,6 +21,7 @@ class TodoAdd extends PureComponent {
     const title = this.titleInput.current.value;
     const description = this.descriptionInput.current.value;
     addItem({ title, description });
+    this.toggleModal();
   };
   render() {
     return (
