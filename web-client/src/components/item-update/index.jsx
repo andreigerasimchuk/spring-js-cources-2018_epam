@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './index.scss';
 import { Modal } from '../modal';
+import './index.scss';
 
 class ItemUpdate extends PureComponent {
   state = {
@@ -35,15 +35,24 @@ class ItemUpdate extends PureComponent {
         </div>
         {this.state.isOpen &&
           <Modal onClose={this.handleOnUpdate}>
-            <input
-              value={this.state.title}
-              onChange={e => this.setState({ title: e.target.value })}
-            />
-            <textarea
-              value={this.state.description}
-              onChange={e => this.setState({ description: e.target.value })}
-            />
-            <button onClick={this.handleClick}>save</button>
+            <div className="item-update">
+              <input
+                className="item-update__title"
+                value={this.state.title}
+                onChange={e => this.setState({ title: e.target.value })}
+              />
+              <textarea
+                className="item-update__description"
+                value={this.state.description}
+                onChange={e => this.setState({ description: e.target.value })}
+              />
+              <button
+                className="item-update__save"
+                onClick={this.handleClick}
+              >
+                save
+              </button>
+            </div>
           </Modal >}
       </div>
     );

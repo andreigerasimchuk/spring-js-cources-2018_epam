@@ -12,7 +12,7 @@ const store = createStore(
 );
 
 const App = () => (
-  <div className="page">
+  <div className="page" id="page">
     <Provider store={store}>
       <TodoApp />
     </Provider >

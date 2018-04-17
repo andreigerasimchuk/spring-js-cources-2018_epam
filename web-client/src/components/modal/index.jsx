@@ -7,10 +7,16 @@ export class Modal extends Component {
   render() {
     return ReactDOM.createPortal(
       <div className="modal">
-        <button className="modal__close-button" onClick={this.props.onClose}>Закрыть</button>
-        {this.props.children}
+        <div className="madal-title">
+          <div className="madal-title__close-button" onClick={this.props.onClose}>
+            <i className="fas fa-window-close" />
+          </div>
+        </div>
+        <div className="modal-content">
+          {this.props.children}
+        </div>
       </div>,
-      document.getElementById('react-root'),
+      document.getElementById('page'),
     );
   }
 }

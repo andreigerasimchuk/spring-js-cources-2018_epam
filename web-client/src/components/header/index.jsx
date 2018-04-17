@@ -3,6 +3,6 @@ import './index.scss';
 
 export const Header = () => (
   <div className="header">
-    <p className="header__add-todo">TODOS</p>
+    <div className="header__add-todo">TODOS</div>
   </div>
 );

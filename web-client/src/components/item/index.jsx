@@ -46,20 +46,31 @@ class Item extends PureComponent {
             <i className="fas fa-check-circle" />
           </div>
           <div className="todo-item__header-title">{title}</div>
-          <div
-            className={`todo-item__header-like ${isLike && 'todo-item__header-like--active'}`}
-            onClick={this.handleOnLike}
-          >
-            <i className="far fa-thumbs-up" />
-          </div>
-          <ItemUpdate _id={_id} title={title} description={description} />
-          <div className="todo-item__header-remove" onClick={this.handleOnDelete}>
-            <i className="fas fa-trash" />
+          <div className="todo-item__operation-wrap">
+            <div
+              className={`todo-item__header-like ${isLike && 'todo-item__header-like--active'}`}
+              onClick={this.handleOnLike}
+            >
+              <i className="far fa-thumbs-up" />
+            </div>
+            <ItemUpdate _id={_id} title={title} description={description} />
+            <div className="todo-item__header-remove" onClick={this.handleOnDelete}>
+              <i className="fas fa-trash" />
+            </div>
           </div>
         </div>
         <div className="todo-item__footer">
-          <div>{date}</div>
-          <button onClick={this.handleOnClickOpen}>развернуть</button>
+          <div className="todo-item__footer-date">
+            {date}
+          </div>
+          <div className="todo-item__footer-right">
+            <div
+              className="todo-item__footer-down"
+              onClick={this.handleOnClickOpen}
+            >
+              <i className="fas fa-sort-down" />
+            </div>
+          </div>
         </div>
         {this.state.isOpen &&
           <ItemDescription _id={_id} description={description} comments={comments} />}

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import './index.scss';
 
 class ItemDescription extends PureComponent {
   constructor(props) {
@@ -20,14 +20,16 @@ class ItemDescription extends PureComponent {
       description,
       comments,
     } = this.props;
-    const itemComments = comments.map(comment => <div key={comment._id}>{comment.title}</div>);
+    const itemComments = comments.map(comment => <div className="todo-item__comments-item" key={comment._id}>{comment.title}</div>);
     return (
       <div className="todo-item__description">
-        {description}
-        <div>Comments:</div>
-        <input ref={this.input} />
-        <button onClick={this.handleOnClick}>add</button>
-        {itemComments}
+        {!!description ? (<div className="todo-item__description-title">{description}</div>) : ''}
+        <div className="todo-item__comments">
+          <div>Comments:</div>
+          <input ref={this.input} />
+          <button onClick={this.handleOnClick}>add</button>
+          {itemComments}
+        </div>
       </div>
     );
   }

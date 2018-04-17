@@ -26,13 +26,26 @@ class TodoAdd extends PureComponent {
   render() {
     return (
       <div className="todo-add">
-        <button onClick={this.toggleModal}>add</button>
+        <div className="todo-add__btn" onClick={this.toggleModal}>
+          <i className="fas fa-plus-square" />
+        </div>
         {this.state.isModalOpen &&
         <Modal onClose={this.toggleModal}>
           <div className="todo-add__modal">
-            <input ref={this.titleInput} />
-            <textarea ref={this.descriptionInput} />
-            <button onClick={this.handleClick}>add</button>
+            <input
+              className="todo-add__title"
+              ref={this.titleInput}
+            />
+            <textarea
+              className="todo-add__description"
+              ref={this.descriptionInput}
+            />
+            <button
+              className="todo-add__btn"
+              onClick={this.handleClick}
+            >
+              add
+            </button>
           </div>
         </Modal>}
       </div>

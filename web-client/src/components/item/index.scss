@@ -1,26 +1,85 @@
+$bg-icon: #0F0D3E;
+$bg-icon-hover: #7E65A9;
 .todo-item {
-    border: 2px solid black;
+    background: #383772;
+    margin: 5px 0;
     min-height: 60px;
+    color: #cbcbd7;
+    // padding: 5px;
     .todo-item__header {
-        border: 2px solid black;
-        min-height: 40px;
+        min-height: 45px;
         display: flex;
         align-items: center;
-        .todo-item__header-title {
-            flex: 1;
+        .todo-item__header-done {
+            margin-left: 10px;
+            color: $bg-icon;  
+            font-size: 25px; 
+            cursor: pointer;
+            transition: color .5s;
         }
-        .todo-item__header-like--active {
-            color: red;
+        .todo-item__header-done:hover {
+            color: #91dc5a;  
         }
         .todo-item__header-done--active {
-            color: green;
+            color: #91dc5a;           
+        }
+        .todo-item__header-title {
+            flex: 1;
+            margin-left: 10px;
+            font-size: 20px;
+        }
+        .todo-item__operation-wrap {
+            display: flex;
+            min-width: 60px;
+            margin-right: 10px;
+            justify-content: space-between;
+            .todo-item__header-like {
+                color: $bg-icon;
+                transition: color .5s;
+                cursor: pointer;
+            }
+            .todo-item__header-like:hover {
+                color: $bg-icon-hover;
+            }
+            .todo-item__header-like--active {
+                color: $bg-icon-hover;
+            }
+            .todo-item__header-remove {
+                color: $bg-icon;
+                cursor: pointer;
+                transition: color .5s;
+            }
+            .todo-item__header-remove:hover {
+                color: $bg-icon-hover;
+            }
+            .todo-item__header-update {
+                color: $bg-icon;
+                cursor: pointer;
+                transition: color .5s;
+            }
+            .todo-item__header-update:hover {
+                color: $bg-icon-hover;
+            }
         }
     }
     .todo-item__footer {
-        border: 2px solid black;
-        min-height: 20px;
+        padding: 0 5px;
+        min-height: 15px;
+        font-size: 12px;
         display: flex;
         justify-content: space-between;
+        background: #292847;
+        .todo-item__footer-date{
+            flex: 1;
+        }
+        .todo-item__footer-right {
+            display: flex;
+            justify-content: space-between;
+            margin-right: 10px;
+        }
+        .todo-item__footer-down {
+            cursor: pointer;
+        }
     }
     .todo-item__description {
         min-height: 60px;
