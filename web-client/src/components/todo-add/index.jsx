@@ -1,13 +1,21 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Modal } from '../modal';
+import './index.scss';
 
 class TodoAdd extends PureComponent {
   constructor(props) {
     super(props);
     this.titleInput = React.createRef();
     this.descriptionInput = React.createRef();
+    this.state = {
+      isModalOpen: false,
+    };
   }
+  toggleModal = () => {
+    this.setState(state => ({ isModalOpen: !state.isModalOpen }));
+  };
   handleClick = () => {
     const { addItem } = this.props;
     const title = this.titleInput.current.value;
@@ -17,10 +25,15 @@ class TodoAdd extends PureComponent {
   render() {
     return (
       <div className="todo-add">
-        todo add // todo
-        <input ref={this.titleInput} />
-        <textarea ref={this.descriptionInput} />
-        <button onClick={this.handleClick}>add</button>
+        <button onClick={this.toggleModal}>add</button>
+        {this.state.isModalOpen &&
+        <Modal onClose={this.toggleModal}>
+          <div className="todo-add__modal">
+            <input ref={this.titleInput} />
+            <textarea ref={this.descriptionInput} />
+            <button onClick={this.handleClick}>add</button>
+          </div>
+        </Modal>}
       </div>
     );
   }

@@ -4,6 +4,17 @@
     .todo-item__header {
         border: 2px solid black;
         min-height: 40px;
+        display: flex;
+        align-items: center;
+        .todo-item__header-title {
+            flex: 1;
+        }
+        .todo-item__header-like--active {
+            color: red;
+        }
+        .todo-item__header-done--active {
+            color: green;
+        }
     }
     .todo-item__footer {
         border: 2px solid black;

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Item } from '../item';
+import Item from '../item';
 import TodoAdd from '../todo-add';
 import './index.scss';
 
