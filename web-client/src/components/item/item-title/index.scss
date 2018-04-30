@@ -1,0 +1,13 @@
+$bg-color: #8FB2A0;
+
+.item__title {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  min-height: 40px;
+  background: $bg-color;
+  margin-top: 10px;
+  .item-title-footer {
+    background: #2E7451;
+  }
+}
