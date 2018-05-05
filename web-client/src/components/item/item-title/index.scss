@@ -1,13 +1,27 @@
 $bg-color: #8FB2A0;
 
-.item__title {
+.list__item-title {
   display: flex;
   flex-direction: column;
-  width: 400px;
-  min-height: 40px;
+  width: 600px;
   background: $bg-color;
   margin-top: 10px;
-  .item-title-footer {
-    background: #2E7451;
+  .item-title__header{
+    min-height: 25px;
+    font-size: 18px;
+    margin: 5px;
+    display: flex;
+    .item-title__header-left {
+      flex: 1;
+    }
   }
+  .item-title__footer {
+    background: #2E7451;
+    font-size: 10px;
+    min-height: 12px;
+  }
+}
+
+.like {
+  color: red;
 }

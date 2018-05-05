@@ -7,4 +7,6 @@ export function guid() {
   return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
 }
 
-export function noop() {}
+export function findIndex(id, data) {
+  return data.findIndex(item => item.id === id);
+}

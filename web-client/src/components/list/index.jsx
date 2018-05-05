@@ -1,11 +1,11 @@
 import React from 'react';
 import Item from '../item';
+import './index.scss';
 
-const List = ({ list, handleRemovingItem }) => (
-  <ul className="todo-list" >
+const List = ({ list }) => (
+  <ul className="list" >
     {list.map(item => (
       <Item
-        handleRemovingItem={handleRemovingItem}
         key={item.id}
         {...item}
       />

@@ -1,0 +1,14 @@
+.item-update {
+  display: flex;
+  flex-direction: column;
+  .item-update__title {
+      margin: 5px;
+  }
+  .item-update__description {
+      margin: 5px; 
+  }
+  .item-update__save {
+      margin: 5px; 
+      width: 50px;
+  }
+}

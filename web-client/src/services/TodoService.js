@@ -2,9 +2,9 @@ import { guid } from '../utils';
 
 export default class TodoService {
   createTodo(data) {
-    const now = new Date();
+    const now = new Date().toLocaleString();
     return {
-      comment: null,
+      comments: [],
       createdDate: now,
       id: guid(),
       isLiked: false,
@@ -17,7 +17,7 @@ export default class TodoService {
     return {
       ...todo,
       ...change,
-      lastUpdateDate: new Date(),
+      lastUpdateDate: new Date().toLocaleString(),
       createdDate: todo.createdDate,
     };
   }

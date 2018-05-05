@@ -1,0 +1,12 @@
+.todo-add-wrap {
+  display: flex;
+  border: 2px solid red;
+  justify-content: center;
+  // flex-direction: column;
+  .todo-add {
+    width: 600px;
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+  }
+}

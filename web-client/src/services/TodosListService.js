@@ -1,11 +1,9 @@
+import { guid, findIndex } from '../utils';
+
 export default class TodosListService {
   constructor(todosListDAO, todoService) {
     this.todosListDAO = todosListDAO;
     this.todoService = todoService;
-  }
-
-  findTodoIndex(id, todos) {
-    return todos.findIndex(todo => todo.id === id);
   }
 
   /**
@@ -34,11 +32,73 @@ export default class TodosListService {
   removeTodoItem(todoId) {
     return this.todosListDAO.getAllTodos()
       .then((todos) => {
-        const index = this.findTodoIndex(todoId, todos);
-        const target = todos[index];
+        const index = findIndex(todoId, todos);
         const result = [...todos];
 
         result.splice(index, 1);
+
+        return this.todosListDAO.saveAllTodos(result);
+      })
+      .then(() => todoId);
+  }
+
+  commentingItem(todoId, comment) {
+    return this.todosListDAO.getAllTodos()
+      .then((todos) => {
+        const index = findIndex(todoId, todos);
+
+        const result = [...todos];
+        const target = result[index];
+
+        target.comments = [...target.comments, { title: comment, id: guid() }];
+
+        return this.todosListDAO.saveAllTodos(result);
+      })
+      .then(() => todoId);
+  }
+
+  likingItem(todoId) {
+    return this.todosListDAO.getAllTodos()
+      .then((todos) => {
+        const index = findIndex(todoId, todos);
+
+        const result = [...todos];
+        const target = result[index];
+        const updatedTodo = this.todoService.updateTodo({ isLiked: !target.isLiked }, target);
+
+        result.splice(index, 1, updatedTodo);
+
+        return this.todosListDAO.saveAllTodos(result);
+      })
+      .then(() => todoId);
+  }
+
+  removeComment(todoId, commentId) {
+    return this.todosListDAO.getAllTodos()
+      .then((todos) => {
+        const index = findIndex(todoId, todos);
+
+        const result = [...todos];
+        const target = result[index];
+
+        const indexComment = findIndex(commentId, target.comments);
+        target.comments.splice(indexComment, 1);
+
+        return this.todosListDAO.saveAllTodos(result);
+      })
+      .then(() => todoId);
+  }
+
+  updatingItem(todoId, data) {
+    return this.todosListDAO.getAllTodos()
+      .then((todos) => {
+        const index = findIndex(todoId, todos);
+        const result = [...todos];
+        const target = result[index];
+
+        const updatedTodo = this.todoService.updateTodo(data, target);
+
+        result.splice(index, 1, updatedTodo);
 
         return this.todosListDAO.saveAllTodos(result);
       })

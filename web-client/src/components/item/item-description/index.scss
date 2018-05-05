@@ -1,8 +1,23 @@
 $bg-color: #8FB2A0;
+$bg-cm-color: #B9D9C8;
 
-.item__description {
-  width: 400px;
+.list__item-description {
+  width: 600px;
   min-height: 60px;
   background: $bg-color;
   margin-top: 2px;
+  .item-description__comments {
+    .form-comments {
+      display: flex;
+      margin: 5px;
+      .form-comments__input {
+        flex: 1;
+      }
+    }
+    .comments-title {
+      background: $bg-cm-color;
+      margin: 5px;
+      padding: 2px;
+    }
+  }
 }
