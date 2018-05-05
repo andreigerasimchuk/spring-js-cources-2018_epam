@@ -7,7 +7,8 @@ class AddForm extends Component {
     this.titleInput = React.createRef();
     this.descriptionInput = React.createRef();
   }
-  handleClick = () => {
+  onAddingItem = (event) => {
+    event.preventDefault();
     const title = this.titleInput.current.value;
     const description = this.descriptionInput.current.value;
 
@@ -19,11 +20,11 @@ class AddForm extends Component {
   render() {
     return (
       <div className="todo-add-wrap">
-        <div className="todo-add" >
+        <form className="todo-add" onSubmit={this.onAddingItem}>
           <input ref={this.titleInput} />
           <textarea ref={this.descriptionInput} />
-          <button onClick={this.handleClick}>add</button>
-        </div>
+          <button type="submit">add</button>
+        </form>
       </div>
     );
   }
