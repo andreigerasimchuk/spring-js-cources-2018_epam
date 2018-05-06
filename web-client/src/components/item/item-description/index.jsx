@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './index.scss';
 
 import Comments from '../../comments';
+import Stub from '../../stub';
+
 import { Context } from '../../../containers/context';
 
 const ItemDescription = ({ id, description, comments }) => (
@@ -9,7 +11,7 @@ const ItemDescription = ({ id, description, comments }) => (
     {context => (
       <div className="list__item-description" >
         <div className="item-description__content">
-          { description }
+          { description || <Stub text="No description ..." /> }
         </div>
         <Comments
           id={id}

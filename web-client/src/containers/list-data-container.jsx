@@ -4,6 +4,7 @@ import { ListContainer } from './list-container';
 import LocalStorageTodosListDAO from '../dao/LocalStorageTodosListDAO';
 import { TodosListService, TodoService } from '../services';
 
+
 export class ListDataContainer extends Component {
   state = {
     list: [],
@@ -36,7 +37,7 @@ export class ListDataContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="we">
         <ListContainer
           list={this.state.list}
           todosListService={this.todosListService}

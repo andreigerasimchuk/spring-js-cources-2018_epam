@@ -20,19 +20,24 @@ class ItemTitle extends Component {
             {this.props.title}
           </div>
           <div className="item-title__header-right">
-            <span onClick={this.updateItem} >
+            <span onClick={this.updateItem} className="icon">
               <i className="fas fa-pencil-alt" />
             </span>
             <span onClick={this.likeItem} className={`${this.props.isLiked && 'like'}`} >
-              <i className="far fa-heart" />
+              <i className="fas fa-heart" />
             </span>
             <span onClick={this.removeItem}>
-              <i className="far fa-trash-alt" />
+              <i className="fas fa-trash" />
             </span>
           </div>
         </div>
         <div className="item-title__footer">
-          {this.props.date}
+          <div>
+            Create: {this.props.createdDate}
+          </div>
+          <div>
+            Update: {this.props.lastUpdateDate}
+          </div>
         </div>
       </div>
     );

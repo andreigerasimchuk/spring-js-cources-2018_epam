@@ -42,15 +42,20 @@ export default class TodosListService {
       .then(() => todoId);
   }
 
-  commentingItem(todoId, comment) {
+  commentingItem(todoId, commentTitle) {
     return this.todosListDAO.getAllTodos()
       .then((todos) => {
         const index = findIndex(todoId, todos);
 
         const result = [...todos];
         const target = result[index];
+        const comment = {
+          id: guid(),
+          title: commentTitle,
+          date: new Date().toLocaleString(),
+        };
 
-        target.comments = [...target.comments, { title: comment, id: guid() }];
+        target.comments = [...target.comments, comment];
 
         return this.todosListDAO.saveAllTodos(result);
       })

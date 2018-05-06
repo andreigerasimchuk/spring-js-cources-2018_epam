@@ -33,18 +33,20 @@ export class ListContainer extends Component {
 
   render() {
     return (
-      <div>
-        <Context.Provider value={{
-          handleRemovingItem: this.handleRemovingItem,
-          handleLikingItem: this.handleLikingItem,
-          handleUpdatingItem: this.handleUpdatingItem,
-          handleCommentingItem: this.handleCommentingItem,
-          handleRemovingComment: this.handleRemovingComment,
-        }}
-        >
-          <AddForm handleAddingItem={this.handleAddingItem} />
-          {this.props.list.length ? <List list={this.props.list} /> : <p>no todos</p>}
-        </Context.Provider>
+      <div className="test-wrap" >
+        <div className="test">
+          <Context.Provider value={{
+            handleRemovingItem: this.handleRemovingItem,
+            handleLikingItem: this.handleLikingItem,
+            handleUpdatingItem: this.handleUpdatingItem,
+            handleCommentingItem: this.handleCommentingItem,
+            handleRemovingComment: this.handleRemovingComment,
+          }}
+          >
+            <List list={this.props.list} />
+            <AddForm handleAddingItem={this.handleAddingItem} />
+          </Context.Provider>
+        </div>
       </div>
     );
   }

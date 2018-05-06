@@ -6,13 +6,18 @@ class Comment extends Component {
   }
   render() {
     return (
-      <div>
-        <div className="comments-title">
+      <div className="comments-list_item">
+        <div className="comments-list_item-title">
           {this.props.title}
         </div>
-        <span onClick={this.onClickRemove}>
-          <i className="far fa-trash-alt" />
-        </span>
+        <div className="comments-list_item-utils">
+          <div className="item-utils_date">
+            {this.props.date}
+          </div>
+          <span onClick={this.onClickRemove} className="item-utils_icon">
+            <i className="fas fa-trash" />
+          </span>
+        </div>
       </div>
     );
   }

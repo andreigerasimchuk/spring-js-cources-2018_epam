@@ -6,24 +6,42 @@ class AddForm extends Component {
     super(props);
     this.titleInput = React.createRef();
     this.descriptionInput = React.createRef();
+    this.state = {
+      titleIsEmpty: false,
+    };
   }
   onAddingItem = (event) => {
     event.preventDefault();
     const title = this.titleInput.current.value;
     const description = this.descriptionInput.current.value;
 
-    this.titleInput.current.value = '';
-    this.descriptionInput.current.value = '';
-
-    this.props.handleAddingItem({ title, description });
+    if (!title) {
+      this.setState({ titleIsEmpty: true });
+    } else {
+      this.setState({ titleIsEmpty: false });
+      this.titleInput.current.value = '';
+      this.descriptionInput.current.value = '';
+      this.props.handleAddingItem({ title, description });
+    }
   }
   render() {
     return (
       <div className="todo-add-wrap">
         <form className="todo-add" onSubmit={this.onAddingItem}>
-          <input ref={this.titleInput} />
-          <textarea ref={this.descriptionInput} />
-          <button type="submit">add</button>
+          <div className="todo-add_inputs">
+            <input
+              className="todo-add_input"
+              ref={this.titleInput}
+              placeholder="Please enter some title ..."
+            />
+            <textarea
+              className="todo-add_textarea"
+              ref={this.descriptionInput}
+              placeholder="And do not forget about the description ... "
+            />
+            { this.state.titleIsEmpty && <div className="todo-add_error" >Error. Title is empty.</div> }
+          </div>
+          <button type="submit" className="todo-add_btn">add</button>
         </form>
       </div>
     );
