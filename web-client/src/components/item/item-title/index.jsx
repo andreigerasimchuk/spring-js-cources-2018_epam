@@ -24,7 +24,7 @@ class ItemTitle extends Component {
             className="item-title__header-left"
           >
             <div className={`item-title__header-icon
-              ${this.props.isComplete && 'item-title__header-icon--isComplited'}`}
+              ${this.props.isCompleted && 'item-title__header-icon--isComplited'}`}
             >
               <i className="fas fa-check-circle" />
             </div>
