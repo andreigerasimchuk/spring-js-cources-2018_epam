@@ -7,13 +7,13 @@ class ItemTitle extends Component {
     this.props.handleRemovingItem(this.props.id);
   }
   likeItem = () => {
-    this.props.handleLikingItem(this.props.id);
+    this.props.handleLikingItem(this.props.id, this.props.isLiked);
   }
   updateItem = () => {
     this.props.handleOnUpdate();
   }
   complitItem = () => {
-    this.props.handleCompletingItem(this.props.id);
+    this.props.handleCompletingItem(this.props.id, this.props.isCompleted);
   }
   render() {
     return (

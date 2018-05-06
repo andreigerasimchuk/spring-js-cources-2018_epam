@@ -19,8 +19,8 @@ export class ListContainer extends Component {
     this.props.todosListService.commentingItem(id, comment);
   };
 
-  handleLikingItem = (id) => {
-    this.props.todosListService.likingItem(id);
+  handleLikingItem = (id, isLiked) => {
+    this.props.todosListService.likingItem(id, isLiked);
   };
 
   handleRemovingComment = (id, commentId) => {
@@ -31,8 +31,8 @@ export class ListContainer extends Component {
     this.props.todosListService.updatingItem(id, data);
   };
 
-  handleCompletingItem = (id) => {
-    this.props.todosListService.completingItem(id);
+  handleCompletingItem = (id, isCompleted) => {
+    this.props.todosListService.completingItem(id, isCompleted);
   };
 
   render() {

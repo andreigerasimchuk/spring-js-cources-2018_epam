@@ -10,12 +10,6 @@ module.exports = {
   devtool: 'inline-source-map',
   module: {
     rules: [
-      // {
-      //   enforce: 'pre',
-      //   test: /\.jsx?$/,
-      //   exclude: /node_modules/,
-      //   loader: 'eslint-loader',
-      // },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -28,10 +22,6 @@ module.exports = {
           { loader: 'css-loader' },
           { loader: 'sass-loader' },
         ],
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader',
       },
     ],
   },
