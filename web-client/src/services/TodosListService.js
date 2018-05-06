@@ -10,7 +10,7 @@ export default class TodosListService {
    * @param {Object} data
    * @param {string} data.title
    * @param {string} data.description
-   * @return {Promise<string>}
+   * @return {string}
    */
   createTodoItem(data) {
     let todoId;
@@ -27,7 +27,6 @@ export default class TodosListService {
 
   /**
    * @param {string} todoId
-   * @param {TodoChange} change
    */
   removeTodoItem(todoId) {
     return this.todosListDAO.getAllTodos()
@@ -41,7 +40,10 @@ export default class TodosListService {
       })
       .then(() => todoId);
   }
-
+  /**
+   * @param {string} todoId
+   * @param {Object} change
+   */
   updatingItem(todoId, data) {
     return this.todosListDAO.getAllTodos()
       .then((todos) => {
@@ -58,14 +60,26 @@ export default class TodosListService {
       .then(() => todoId);
   }
 
+  /**
+   * @param {string} todoId
+   * @param {Boolean} isLiked
+   */
   likingItem(todoId, isLiked) {
     this.updatingItem(todoId, { isLiked: !isLiked });
   }
 
+  /**
+   * @param {string} todoId
+   * @param {Boolean} isCompleted
+   */
   completingItem(todoId, isCompleted) {
     this.updatingItem(todoId, { isCompleted: !isCompleted });
   }
 
+  /**
+   * @param {string} todoId
+   * @param {string} commentTitle
+   */
   commentingItem(todoId, commentTitle) {
     return this.todosListDAO.getAllTodos()
       .then((todos) => {
@@ -86,6 +100,10 @@ export default class TodosListService {
       .then(() => todoId);
   }
 
+  /**
+   * @param {string} todoId
+   * @param {string} commentId
+   */
   removeComment(todoId, commentId) {
     return this.todosListDAO.getAllTodos()
       .then((todos) => {
