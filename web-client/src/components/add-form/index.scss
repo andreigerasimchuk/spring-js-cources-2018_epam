@@ -12,11 +12,10 @@
       flex-direction: column;
       width: 100%;
       .todo-add_input {
-        margin: 0 10px;
+        margin: 0 5px;
       }
       .todo-add_textarea {
-        margin: 5px 10px;
-        height: 50px;
+        margin: 5px 5px;
       }
       .todo-add_error {
         margin: 0 10px;
@@ -25,9 +24,8 @@
       }
     }
     .todo-add_btn {
-      height: 20px;
       width: 80px;
-      margin-right: 10px;
+      margin-right: 5px;
     }
   }
 }

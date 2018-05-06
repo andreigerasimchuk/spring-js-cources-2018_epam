@@ -4,6 +4,74 @@ ul {
     list-style: none;
 }
 
+input,
+label,
+select,
+button,
+textarea {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+    background: none;
+    line-height: 1;
+    outline: none;
+    /* Browsers have different default form fonts */
+    font-size: 13px;
+    font-family: Arial;
+}
+
 body {
     background: #C1D9CD;
+}
+
+.btn {
+    background: #2E7451;
+    border: 1px solid #305743;
+    width: 70px;
+    height: 30px;
+    color: #7EC29F;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0F4B2D;
+}
+
+.input {
+    background: #B9D9C8;
+    height: 24px;
+    border: 1px solid #305743;
+    color: #000;
+    padding: 2px 10px;
+    font-weight: 600;
+}
+
+.textarea {
+    resize: none;
+    height: 40px;    
+    color: #000;
+    padding: 10px 10px;
+    background: #B9D9C8; 
+    border: 1px solid #305743;
+}
+
+.div-stub {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    background: #2E7451;
+    margin-top: 10px;
+    height: 10px;
+}
+
+.container-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

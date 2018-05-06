@@ -12,7 +12,7 @@ const List = ({ list }) => {
     </ul>
   );
 
-  return list.length ? todoList : <Stub text="No todos" />;
+  return list.length ? todoList : <div className="list-stub__wrap"><Stub text="No todos" /></div>;
 };
 
 export default List;

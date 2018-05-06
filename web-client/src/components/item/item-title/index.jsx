@@ -12,18 +12,34 @@ class ItemTitle extends Component {
   updateItem = () => {
     this.props.handleOnUpdate();
   }
+  complitItem = () => {
+    this.props.handleCompletingItem(this.props.id);
+  }
   render() {
     return (
       <div className="list__item-title" >
         <div className="item-title__header">
-          <div className="item-title__header-left">
-            {this.props.title}
-          </div>
+          <span
+            onClick={this.complitItem}
+            className="item-title__header-left"
+          >
+            <div className={`item-title__header-icon
+              ${this.props.isComplete && 'item-title__header-icon--isComplited'}`}
+            >
+              <i className="fas fa-check-circle" />
+            </div>
+            <div className="item-title__header-title">
+              {this.props.title}
+            </div>
+          </span>
           <div className="item-title__header-right">
             <span onClick={this.updateItem} className="icon">
               <i className="fas fa-pencil-alt" />
             </span>
-            <span onClick={this.likeItem} className={`${this.props.isLiked && 'like'}`} >
+            <span
+              onClick={this.likeItem}
+              className={`${this.props.isLiked && 'item-title--isliked'}`}
+            >
               <i className="fas fa-heart" />
             </span>
             <span onClick={this.removeItem}>

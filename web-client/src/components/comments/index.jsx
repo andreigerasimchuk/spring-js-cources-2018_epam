@@ -29,13 +29,14 @@ class Comments extends Component {
       <div className="item-comments">
         <div className="item-comments_form">
           <input
-            className="comments_form__input"
+            className="comments_form__input input"
             placeholder="Do you want to comment?"
             ref={this.input}
           />
-          <button className="form-comments__btn" onClick={this.onAddingComment}>add</button>
+          <button className="form-comments__btn btn" onClick={this.onAddingComment}>add</button>
         </div>
-        { this.state.titleCommentIsEmpty && <div className="comments_form_error" >Error. The comment text is empty.</div> }
+        { this.state.titleCommentIsEmpty
+          && <div className="comments_form_error" >Error. The comment text is empty.</div> }
         <div className="comments-list">
           {this.props.comments.map(comment => (
             <Comment

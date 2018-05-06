@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import List from '../components/list';
 import AddForm from '../components/add-form';
+import Header from '../components/header';
 
 import { TodosListService } from '../services';
-
 import { Context } from './context';
 
 export class ListContainer extends Component {
@@ -31,23 +31,30 @@ export class ListContainer extends Component {
     this.props.todosListService.updatingItem(id, data);
   };
 
+  handleCompletingItem = (id) => {
+    this.props.todosListService.completingItem(id);
+  };
+
   render() {
     return (
-      <div className="test-wrap" >
-        <div className="test">
+      <React.Fragment>
+        <div className="container-wrap">
           <Context.Provider value={{
             handleRemovingItem: this.handleRemovingItem,
             handleLikingItem: this.handleLikingItem,
             handleUpdatingItem: this.handleUpdatingItem,
             handleCommentingItem: this.handleCommentingItem,
             handleRemovingComment: this.handleRemovingComment,
+            handleCompletingItem: this.handleCompletingItem,
           }}
           >
-            <List list={this.props.list} />
+            <Header />
             <AddForm handleAddingItem={this.handleAddingItem} />
+            <div className="div-stub" />
+            <List list={this.props.list} />
           </Context.Provider>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -109,4 +109,23 @@ export default class TodosListService {
       })
       .then(() => todoId);
   }
+
+  completingItem(todoId) {
+    return this.todosListDAO.getAllTodos()
+      .then((todos) => {
+        const index = findIndex(todoId, todos);
+
+        const result = [...todos];
+        const target = result[index];
+        const updatedTodo = this.todoService.updateTodo(
+          { isCompleted: !target.isCompleted },
+          target,
+        );
+
+        result.splice(index, 1, updatedTodo);
+
+        return this.todosListDAO.saveAllTodos(result);
+      })
+      .then(() => todoId);
+  }
 }

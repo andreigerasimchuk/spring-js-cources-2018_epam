@@ -30,18 +30,18 @@ class AddForm extends Component {
         <form className="todo-add" onSubmit={this.onAddingItem}>
           <div className="todo-add_inputs">
             <input
-              className="todo-add_input"
+              className="todo-add_input input"
               ref={this.titleInput}
               placeholder="Please enter some title ..."
             />
             <textarea
-              className="todo-add_textarea"
+              className="todo-add_textarea textarea"
               ref={this.descriptionInput}
               placeholder="And do not forget about the description ... "
             />
             { this.state.titleIsEmpty && <div className="todo-add_error" >Error. Title is empty.</div> }
           </div>
-          <button type="submit" className="todo-add_btn">add</button>
+          <button type="submit" className="todo-add_btn btn">add</button>
         </form>
       </div>
     );

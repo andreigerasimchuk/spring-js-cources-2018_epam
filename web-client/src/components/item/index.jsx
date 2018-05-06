@@ -4,7 +4,6 @@ import ItemDescription from './item-description';
 import { ItemUpdate } from '../item/item-update';
 
 import { Context } from '../../containers/context';
-import './index.scss';
 
 class Item extends Component {
   state = {
@@ -20,6 +19,7 @@ class Item extends Component {
       description,
       isLiked,
       comments,
+      isCompleted,
       createdDate,
       lastUpdateDate,
     } = this.props;
@@ -31,11 +31,13 @@ class Item extends Component {
               id={id}
               title={title}
               isLiked={isLiked}
+              isCompleted={isCompleted}
               createdDate={createdDate}
               lastUpdateDate={lastUpdateDate}
               handleOnUpdate={this.handleOnUpdate}
               handleLikingItem={context.handleLikingItem}
               handleRemovingItem={context.handleRemovingItem}
+              handleCompletingItem={context.handleCompletingItem}
             />
             <ItemDescription
               id={id}

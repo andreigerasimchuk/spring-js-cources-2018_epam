@@ -8,6 +8,7 @@ export default class TodoService {
       createdDate: now,
       id: guid(),
       isLiked: false,
+      isCompleted: false,
       lastUpdateDate: now,
       ...data,
     };

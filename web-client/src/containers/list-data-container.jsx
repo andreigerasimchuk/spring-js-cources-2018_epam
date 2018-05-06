@@ -37,12 +37,10 @@ export class ListDataContainer extends Component {
 
   render() {
     return (
-      <div className="we">
-        <ListContainer
-          list={this.state.list}
-          todosListService={this.todosListService}
-        />
-      </div>
+      <ListContainer
+        list={this.state.list}
+        todosListService={this.todosListService}
+      />
     );
   }
 }

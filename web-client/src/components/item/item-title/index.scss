@@ -13,7 +13,12 @@ $bg-color: #8FB2A0;
     display: flex;
     align-items: center;
     .item-title__header-left {
+      display: flex;
       flex: 1;
+      cursor: pointer;
+      .item-title__header-title {
+        margin-left: 5px;
+      }
     }
     .item-title__header-right * {
       padding: 0 1px;
@@ -34,6 +39,14 @@ $bg-color: #8FB2A0;
   }
 }
 
-.like {
+.item-title--isliked {
   color: #6F2015;
+}
+
+.item-title__header-icon {
+  color: rgba(5, 5, 5, 0.288);
+}
+
+.item-title__header-icon--isComplited {
+  color: #2E7451;
 }
