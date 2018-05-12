@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreigerasimchuk/spring-js-cources-2018_epam.git"
+  },
+  "author": "Andrei Gerasimchuk",
+  "license": "ISC",
+  "homepage": "https://github.com/andreigerasimchuk/spring-js-cources-2018_epam#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.0"
+  }
+}
