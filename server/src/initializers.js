@@ -9,7 +9,7 @@ mongoose.Promise = Promise;
 const mongoConnection = new Promise((resolve, reject) => {
   mongoose.connection.on('connected', resolve)
                      .on('error', reject);
-})
+});
 
 module.exports = Promise.all([
   mongoConnection,
