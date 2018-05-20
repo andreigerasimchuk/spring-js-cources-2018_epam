@@ -8,8 +8,8 @@ const app = express();
 
 const init = () => {
 
+  app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
   app.use(bodyParser.json({ limit: '10mb' }));
-  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors());
   app.use('/api', api);
 
@@ -27,7 +27,6 @@ const start = () => {
 }
 
 module.exports = {
-  app,
   init,
   start,
 }
