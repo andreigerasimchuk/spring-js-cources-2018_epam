@@ -1,4 +1,3 @@
-//const {      addComments } = require('./items');
 const getList = require('./getList');
 const getItem = require('./getItem');
 const create = require('./create');
