@@ -18,11 +18,33 @@ const createItem = (data) => {
     }});
 }
 
-removeItem = async (_id) => {
+const removeItem = async (_id) => {
   return new Promise( async (resolve, reject) => {
     try {
-      await Item.remove(_id);
-      resolve();
+      const item = await Item.findOneAndRemove({ _id });
+      resolve({ item, message: 'ok'});
+    } catch (err) {
+      reject({ item:null, message:err });
+    }
+  });
+}
+
+const updateItem = async (_id, change) => {
+  return new Promise( async (resolve, reject) => {
+    try {
+      const item = await Item.update({ _id }, change);
+      resolve(item);
+    } catch (err) {
+      reject(err)
+    }
+  });
+}
+
+const getItem = async(_id) => {
+  return new Promise( async (resolve, reject) => {
+    try {
+      const item = await Item.findById({ _id });
+      resolve(item);
     } catch (err) {
       reject(err)
     }
@@ -33,4 +55,6 @@ module.exports = {
   list,
   createItem,
   removeItem,
+  updateItem,
+  getItem,
 }

@@ -2,12 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 const { 
-  getlist, getById, create, remove, update,
+  getlist, getById, create, remove, update, 
 } = require('../controllers/items');
 
-router.get('/items', getlist);
+router.get('/all', getlist);
+router.post('/', create);
 
-router.post('/item', create);
-router.delete('/item/:id', remove);
+router.get('/:_id', getById);
+router.patch('/:_id', update);
+router.delete('/:_id', remove);
 
 module.exports = router;

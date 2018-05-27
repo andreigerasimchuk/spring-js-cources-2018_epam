@@ -6,7 +6,7 @@ appReady
     server.init();
     server.start();
  })
- .catch(error => {
+ .catch(err => {
    console.info('\nNo connection to mongodb!');
-   console.error(error);
+   console.error(err.message);
   })

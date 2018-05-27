@@ -11,7 +11,7 @@ const init = () => {
   app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
   app.use(bodyParser.json({ limit: '10mb' }));
   app.use(cors());
-  app.use('/api', api);
+  app.use('/api/item/', api);
 
 }
 

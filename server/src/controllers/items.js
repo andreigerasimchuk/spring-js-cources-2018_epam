@@ -1,8 +1,11 @@
-const  { createItem, removeItem, list } = require('../dao');
-const TodoService = require('../services/TodoService');
+const ItemListService = require('../core/sevices/ItemListService');
+const DAO = require('../dao');
+
+const listService = new ItemListService(DAO);
 
 const getlist = (req, res) => {
-  list()
+  listService
+    .getList()
     .then(items => {
       res.status(200).json({ list: items });
     })
@@ -12,19 +15,25 @@ const getlist = (req, res) => {
 } 
 
 const getById = (req, res) => {
-  // todo
+  const { _id } = req.params;
+  listService
+    .getItem(_id)
+    .then((item) => { 
+      res.status(200).json({ item }); 
+    })
+    .catch(err => {
+      throw new Error(err);
+    })
 }
 
 const create = (req, res) => {
 
   const { title, discription } = req.body;
 
-  const todoService = new TodoService();
-  const data = todoService.createTodo({ title, discription });
-
-  createItem(data)
+  listService
+    .createItem({ title, discription })
     .then(item => {
-      res.status(200).json({ item: item });
+      res.status(200).json({ item });
     })
     .catch(err => {
       throw new Error(err);
@@ -33,18 +42,35 @@ const create = (req, res) => {
 
 const remove = (req, res) => {
   const { _id } = req.params;
-  removeItem(_id)
-    .then(() => {
-      res.status(200).json({ });
+
+  listService
+    .removeItem(_id)
+    .then((result) => {
+      if(result.item === null) {
+        res.status(200).json({  });
+      } else {
+        res.status(200).json({ item:result.item });
+      }
     })
     .catch(err => {
-      throw new Error(err);
+      res.status(500).json({ err });
     });
 
 }
 
 const update = (req, res) => {
-  // todo
+  const { title, discription } = req.body;
+  const { _id } = req.params;
+
+  listService
+    .updateItem(_id, { title, discription })
+    .then(result => {
+      if (result.item === null) {
+        res.status(401).json({ }); //todo
+      } else {
+        res.status(200).json({ _id });
+      }
+    });
 }
 
 module.exports = {
