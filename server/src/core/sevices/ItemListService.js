@@ -18,7 +18,7 @@ class ItemListService {
   }
 
   createItem(data) {
-    const item = itemService.createItem(data);
+    const item = itemService.create(data);
     return this.itemsDAO.createItem(item);
   }
 

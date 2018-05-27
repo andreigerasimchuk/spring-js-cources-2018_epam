@@ -5,8 +5,10 @@ const {
   getList, getItem, create, remove, update, like, complete, addComments,
 } = require('../controllers');
 
+const validateCreateItem = require('../validators/createItem');
+
 router.get('/all', getList);
-router.post('/', create);
+router.post('/', validateCreateItem, create);
 
 router.get('/:_id', getItem);
 router.patch('/:_id', update);
