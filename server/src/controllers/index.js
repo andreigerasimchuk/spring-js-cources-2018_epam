@@ -1,4 +1,4 @@
-const { getlist, getById, remove, create, update, like } = require('./items');
+const { getlist, getById, remove, create, update, like, complete } = require('./items');
 
 module.exports = {
   getlist,
@@ -7,4 +7,5 @@ module.exports = {
   remove,
   update,
   like,
+  complete,
 }

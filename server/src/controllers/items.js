@@ -86,11 +86,25 @@ const like = (req, res) => {
   });
 }
 
+const complete = (req, res) => {
+  const { _id } = req.params;
+  listService
+  .completeItem(_id)
+  .then(result => {
+    if (result.item === null) {
+      res.status(401).json({ }); //todo
+    } else {
+      res.status(200).json({ _id });
+    }
+  });
+}
+
 module.exports = {
   getlist,
   getById,
   create,
   remove,
   update,
-  like
+  like,
+  complete
 }

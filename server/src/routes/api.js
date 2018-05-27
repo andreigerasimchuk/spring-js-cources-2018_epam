@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { 
-  getlist, getById, create, remove, update, like,
+  getlist, getById, create, remove, update, like, complete,
 } = require('../controllers/items');
 
 router.get('/all', getlist);
@@ -13,5 +13,6 @@ router.patch('/:_id', update);
 router.delete('/:_id', remove);
 
 router.patch('/like/:_id', like);
+router.patch('/complete/:_id', complete);
 
 module.exports = router;

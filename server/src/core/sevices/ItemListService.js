@@ -60,6 +60,16 @@ class ItemListService {
       });
   }
 
+  completeItem(_id) {
+    return this.itemsDAO
+    .getItem(_id)
+    .then(item => {
+      return this.update(_id, item, { isCompleted: !item['isCompleted']});
+    })
+    .catch(err => {
+      return { item: null, message: err };
+    });
+  }
 }
 
 module.exports = ItemListService;
