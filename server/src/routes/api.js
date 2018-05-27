@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { 
-  getlist, getById, create, remove, update, like, complete,
+  getlist, getById, create, remove, update, like, complete, addComments,
 } = require('../controllers/items');
 
 router.get('/all', getlist);
@@ -14,5 +14,6 @@ router.delete('/:_id', remove);
 
 router.patch('/like/:_id', like);
 router.patch('/complete/:_id', complete);
+router.patch('/addComments/:_id', addComments);
 
 module.exports = router;

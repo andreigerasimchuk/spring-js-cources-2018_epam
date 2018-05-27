@@ -1,4 +1,5 @@
 const ItemService = require('./ItemService');
+const guid = require('../util');
 
 const itemService = new ItemService();
 
@@ -62,14 +63,31 @@ class ItemListService {
 
   completeItem(_id) {
     return this.itemsDAO
+      .getItem(_id)
+      .then(item => {
+        return this.update(_id, item, { isCompleted: !item.isCompleted});
+      })
+      .catch(err => {
+        return { item: null, message: err };
+      });
+  }
+
+  addComment(_id, title) {
+    return this.itemsDAO
     .getItem(_id)
     .then(item => {
-      return this.update(_id, item, { isCompleted: !item['isCompleted']});
+      const comment = {
+        title,
+        id: guid(),
+      };
+      let comments = [...item.comments, comment]
+      return this.update(_id, item, { comments });
     })
     .catch(err => {
       return { item: null, message: err };
     });
   }
+
 }
 
 module.exports = ItemListService;

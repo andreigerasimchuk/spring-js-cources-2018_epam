@@ -1,5 +1,6 @@
 const ItemListService = require('../core/sevices/ItemListService');
 const DAO = require('../dao');
+const TodoNotFoundError = require('../errors/TodoNotFoundError');
 
 const listService = new ItemListService(DAO);
 
@@ -10,7 +11,7 @@ const getlist = (req, res) => {
       res.status(200).json({ list: items });
     })
     .catch(err => {
-      throw new Error(err);
+      next(new Error(err));
     });
 } 
 
@@ -22,7 +23,7 @@ const getById = (req, res) => {
       res.status(200).json({ item }); 
     })
     .catch(err => {
-      throw new Error(err);
+      next(new Error(err)); // todo
     })
 }
 
@@ -36,7 +37,7 @@ const create = (req, res) => {
       res.status(200).json({ item });
     })
     .catch(err => {
-      throw new Error(err);
+      next(new Error(err));
     });
 }
 
@@ -47,7 +48,7 @@ const remove = (req, res) => {
     .removeItem(_id)
     .then((result) => {
       if(result.item === null) {
-        res.status(200).json({  });
+        next(new TodoNotFoundError(_id));
       } else {
         res.status(200).json({ item:result.item });
       }
@@ -66,7 +67,7 @@ const update = (req, res) => {
     .updateItem(_id, { title, discription })
     .then(result => {
       if (result.item === null) {
-        res.status(401).json({ }); //todo
+        next(new TodoNotFoundError(_id));
       } else {
         res.status(200).json({ _id });
       }
@@ -76,27 +77,42 @@ const update = (req, res) => {
 const like = (req, res) => {
   const { _id } = req.params;
   listService
-  .likeItem(_id)
-  .then(result => {
-    if (result.item === null) {
-      res.status(401).json({ }); //todo
-    } else {
-      res.status(200).json({ _id });
-    }
-  });
+    .likeItem(_id)
+    .then(result => {
+      if (result.item === null) {
+        next(new TodoNotFoundError(_id));
+      } else {
+        res.status(200).json({ _id });
+      }
+    });
 }
 
 const complete = (req, res) => {
   const { _id } = req.params;
   listService
-  .completeItem(_id)
-  .then(result => {
-    if (result.item === null) {
-      res.status(401).json({ }); //todo
-    } else {
-      res.status(200).json({ _id });
-    }
-  });
+    .completeItem(_id)
+    .then(result => {
+      if (result.item === null) {
+        next(new TodoNotFoundError(_id));
+      } else {
+        res.status(200).json({ _id });
+      }
+    });
+}
+
+const addComments = (req, res, next) => {
+  const { _id } = req.params;
+  const { title } = req.body;
+  listService
+    .addComment(_id, title)
+    .then(result => {
+      if (result.item === null) {
+        next(new TodoNotFoundError(_id));
+      } else {
+        console.log('tut')
+        res.status(200).json({ _id });
+      }
+    });
 }
 
 module.exports = {
@@ -106,5 +122,6 @@ module.exports = {
   remove,
   update,
   like,
-  complete
+  complete,
+  addComments
 }
