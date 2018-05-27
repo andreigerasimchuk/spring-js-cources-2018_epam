@@ -25,16 +25,35 @@ class ItemListService {
     return this.itemsDAO.removeItem(_id);
   }
 
+  update(_id, item, change) {
+    const cleanItem = itemService.getCleanItem(item);
+    const updatedItem = itemService.update(change, cleanItem);
+    return this.itemsDAO
+      .updateItem(_id, updatedItem)
+      .then(item => {
+        return { item, message: 'ok' };
+      })
+      .catch(err => {
+        return { item: null, message: err };
+      });
+  }
+
   updateItem(_id, change) {
     return this.itemsDAO
       .getItem(_id)
       .then(item => {
-        const cleanItem = itemService.getCleanItem(item);
-        const updatedItem = itemService.update(change, cleanItem);
-        return this.itemsDAO.updateItem(_id, updatedItem);
+        return this.update(_id, item, change);
       })
+      .catch(err => {
+        return { item: null, message: err };
+      });
+  }
+
+  likeItem(_id) {
+    return this.itemsDAO
+      .getItem(_id)
       .then(item => {
-        return { item, message: 'ok'};
+        return this.update(_id, item, { isLiked: !item.isLiked});
       })
       .catch(err => {
         return { item: null, message: err };

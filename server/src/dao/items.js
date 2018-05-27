@@ -32,7 +32,7 @@ const removeItem = async (_id) => {
 const updateItem = async (_id, change) => {
   return new Promise( async (resolve, reject) => {
     try {
-      const item = await Item.update({ _id }, change);
+      const item = await Item.update({_id}, change);
       resolve(item);
     } catch (err) {
       reject(err)
