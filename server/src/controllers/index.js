@@ -1,8 +1,17 @@
-const { getlist, getById, remove, create, update, like, complete, addComments } = require('./items');
+//const {      addComments } = require('./items');
+const getList = require('./getList');
+const getItem = require('./getItem');
+const create = require('./create');
+const update = require('./update');
+const remove = require('./remove');
+const like = require('./like');
+const complete = require('./complete');
+const addComments = require('./addComments');
+
 
 module.exports = {
-  getlist,
-  getById,
+  getList,
+  getItem,
   create,
   remove,
   update,
