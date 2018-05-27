@@ -44,9 +44,9 @@ const getItem = async(_id) => {
   return new Promise( async (resolve, reject) => {
     try {
       const item = await Item.findById({ _id });
-      resolve(item);
+      resolve({ item, message: 'ok'});
     } catch (err) {
-      reject(err)
+      reject({ item:null, message:err });
     }
   });
 }

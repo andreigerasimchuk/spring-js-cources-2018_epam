@@ -19,11 +19,15 @@ const getById = (req, res) => {
   const { _id } = req.params;
   listService
     .getItem(_id)
-    .then((item) => { 
-      res.status(200).json({ item }); 
+    .then((result) => { 
+      if(result.item === null) {
+        next(new TodoNotFoundError(_id));
+      } else {
+        res.status(200).json({ item: result.item });
+      }
     })
     .catch(err => {
-      next(new Error(err)); // todo
+      next(new Error(err));
     })
 }
 
@@ -54,7 +58,7 @@ const remove = (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({ err });
+      next(new Error(err));
     });
 
 }
@@ -71,6 +75,9 @@ const update = (req, res) => {
       } else {
         res.status(200).json({ _id });
       }
+    })
+    .catch(err => {
+      next(new Error(err));
     });
 }
 
@@ -84,6 +91,9 @@ const like = (req, res) => {
       } else {
         res.status(200).json({ _id });
       }
+    })
+    .catch(err => {
+      next(new Error(err));
     });
 }
 
@@ -97,6 +107,9 @@ const complete = (req, res) => {
       } else {
         res.status(200).json({ _id });
       }
+    })
+    .catch(err => {
+      next(new Error(err));
     });
 }
 
@@ -112,6 +125,9 @@ const addComments = (req, res, next) => {
         console.log('tut')
         res.status(200).json({ _id });
       }
+    })
+    .catch(err => {
+      next(new Error(err));
     });
 }
 
