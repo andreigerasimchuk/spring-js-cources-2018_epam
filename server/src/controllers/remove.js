@@ -6,14 +6,14 @@ const listService = new ItemListService(DAO);
 
 const remove = (req, res) => {
   const { _id } = req.params;
-
+  console.log(_id)
   listService
     .removeItem(_id)
     .then((result) => {
-      if(result.item === null) {
+      if(result.id === null) {
         next(new TodoNotFoundError(_id));
       } else {
-        res.status(200).json({ item:result.item });
+        res.status(200).json({ id: result.id });
       }
     })
     .catch(err => {

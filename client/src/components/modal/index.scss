@@ -1,0 +1,33 @@
+.modal {
+  position: absolute;
+  min-width: 400px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  background-color:rgba(119, 173, 145, 0.9);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  .madal-title {
+      min-height: 30px;
+      background: #2E7451;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 5px;
+      .madal-title__close-button {
+          font-size: 20px;
+          color: #cbcbd7;
+          transition: color 0.5s;
+      }
+      .madal-title__close-button:hover {
+          color: #9B9BA1; 
+      } 
+  }
+  .modal-content {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+  }
+}

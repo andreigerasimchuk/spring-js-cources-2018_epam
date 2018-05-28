@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const schema = Joi.object().keys({
   title: Joi.string().min(1).required(),
-  discription: Joi.string(),
+  description: Joi.string().min(0),
 });
 
 const validateCreateItem = (req, res, next) => {

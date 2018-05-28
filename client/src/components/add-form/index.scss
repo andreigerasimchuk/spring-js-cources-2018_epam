@@ -1,0 +1,31 @@
+.todo-add-wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  .todo-add {
+    width: 600px;
+    background: #8FB2A0;
+    padding: 10px 0;
+    display: flex;
+    .todo-add_inputs {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .todo-add_input {
+        margin: 0 5px;
+      }
+      .todo-add_textarea {
+        margin: 5px 5px;
+      }
+      .todo-add_error {
+        margin: 0 10px;
+        color: #6F2015;
+        font-weight: 700;
+      }
+    }
+    .todo-add_btn {
+      width: 80px;
+      margin-right: 5px;
+    }
+  }
+}

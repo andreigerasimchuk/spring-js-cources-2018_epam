@@ -1,0 +1,11 @@
+$bg-color: #8FB2A0;
+
+.list__item-description {
+  width: 600px;
+  min-height: 60px;
+  background: $bg-color;
+  margin-top: 2px;
+  .item-description__content {
+    padding: 5px;
+  }
+}

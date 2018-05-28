@@ -25,10 +25,11 @@ const createItem = (data) => {
 const removeItem = async (_id) => {
   return new Promise( async (resolve, reject) => {
     try {
-      const item = await Item.findOneAndRemove({ _id });
-      resolve({ item, message: 'ok'});
+      const item = await Item.findOneAndRemove(_id);
+      console.log(item)
+      resolve({ id: item.id, message: 'ok'});
     } catch (err) {
-      reject({ item: null, message:err });
+      reject({ id: null, message: err });
     }
   });
 }
