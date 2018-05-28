@@ -5,17 +5,17 @@ const {
   getList, getItem, create, remove, update, like, complete, addComments,
 } = require('../controllers');
 
-const validateCreateItem = require('../validators/createItem');
+const { validateCreateItem, validateGetItem } = require('../validators');
 
 router.get('/all', getList);
 router.post('/', validateCreateItem, create);
 
-router.get('/:_id', getItem);
-router.patch('/:_id', update);
-router.delete('/:_id', remove);
+router.get('/:_id', validateGetItem, getItem);
+router.patch('/:_id', validateCreateItem, update);
+router.delete('/:_id', validateGetItem, remove);
 
-router.patch('/like/:_id', like);
-router.patch('/complete/:_id', complete);
-router.patch('/addComments/:_id', addComments);
+router.patch('/like/:_id', validateGetItem, like);
+router.patch('/complete/:_id', validateGetItem, complete);
+router.patch('/addComments/:_id',  addComments); // todo
 
 module.exports = router;
