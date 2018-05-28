@@ -1,8 +1,10 @@
+const guid = require('../util');
 
 class ItemService {
   create(data) {
     const now = new Date().toLocaleString();
     return {
+      id: guid(),
       comments: [],
       createdDate: now,
       isLiked: false,

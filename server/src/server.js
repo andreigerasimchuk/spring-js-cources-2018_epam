@@ -16,9 +16,7 @@ const init = () => {
   app.use('/api/item/', api);
   app.use((err, req, res, next) => {
     if (err instanceof TodoNotFoundError) {
-      res
-        .status(404)
-        .json({ message: err.message });
+      res.status(404).json({ message: err.message });
     } else {
       res.status(500).json({ message: `Something went wrong` });
     }
