@@ -40,21 +40,28 @@ export default class LocalStorageTodosListDAO {
       .catch(err => null);
   }
 
-  updateItem(_id, metod, apiPath) {
-    return fetch(`http://localhost:3009/api/item/${apiPath}${_id}`, {
+  updateItem(_id, metod, apiPath, change = null) {
+    const options = {
       method: metod,
       headers: {
         'Content-Type': 'application/json',
       },
-    })
+      body: {},
+    };
+
+    if (change !== null) {
+      options.body = JSON.stringify(change);
+    }
+
+    return fetch(`http://localhost:3009/api/item/${apiPath}${_id}`, options)
       .then(res => res.json())
       .then(res => res.item)
       .catch(err => null);
   }
 
   /**
-   * @param {TodoObject[]} todos
-   */
+     * @param {TodoObject[]} todos
+     */
   saveAllTodos(todos) {
     try {
       this.list = [...todos];

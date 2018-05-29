@@ -6,6 +6,7 @@ const listService = new ItemListService(DAO);
 
 const like = (req, res, next) => {
   const { _id } = req.params;
+  
   listService
     .likeItem(_id)
     .then(result => {

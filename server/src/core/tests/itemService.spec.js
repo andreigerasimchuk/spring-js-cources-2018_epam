@@ -1,5 +1,5 @@
 import ItemService from '../sevices/ItemService';
-import guid from '../util';
+import { guid } from '../util';
 
 describe('ItemService', () => {
   let todoService;

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { 
-  getList, getItem, create, remove, update, like, complete, addComments,
+  getList, getItem, create, remove, update, like, complete, comments,
 } = require('../controllers');
 
 const { validateCreateItem, validateGetItem } = require('../validators');
@@ -16,6 +16,7 @@ router.delete('/:_id', validateGetItem, remove);
 
 router.patch('/like/:_id', validateGetItem, like);
 router.patch('/complete/:_id', validateGetItem, complete);
-router.patch('/addComments/:_id',  addComments); // todo
+router.patch('/addComments/:_id',  comments.addComment); // todo
+router.patch('/deleteComments/:_id', comments.deleteComment);
 
 module.exports = router;

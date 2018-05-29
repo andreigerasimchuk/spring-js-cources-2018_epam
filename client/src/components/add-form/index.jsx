@@ -15,7 +15,7 @@ class AddForm extends Component {
     const title = this.titleInput.current.value;
     const description = this.descriptionInput.current.value;
 
-    if (!title) {
+    if (!title.trim().length) {
       this.setState({ titleIsEmpty: true });
     } else {
       this.setState({ titleIsEmpty: false });

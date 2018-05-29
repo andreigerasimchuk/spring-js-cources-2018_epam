@@ -41,29 +41,8 @@ export default class TodosListService {
    * @param {string} todoId
    * @param {Object} change
    */
-  updatingItem(todoId, data) {
-    return this.todosListDAO.getAllTodos()
-      .then((todos) => {
-        const index = findIndex(todoId, todos);
-        const result = [...todos];
-        const target = result[index];
-
-        const updatedTodo = this.todoService.updateTodo(data, target);
-
-        result.splice(index, 1, updatedTodo);
-
-        return this.todosListDAO.saveAllTodos(result);
-      })
-      .then(() => todoId);
-  }
-
-  /**
-   * @param {string} todoId
-   * @param {Boolean} isLiked
-   */
-  likingItem(todoId, isLiked) {
-    // this.updatingItem(todoId, { isLiked: !isLiked });
-    this.todosListDAO.updateItem(todoId, 'PATCH', 'like/')
+  updatingItem(todoId, data, metod = 'PATCH', apiPath = '') {
+    this.todosListDAO.updateItem(todoId, metod, apiPath, data)
       .then((item) => {
         if (item !== null) {
           const items = this.todosListDAO.getAll();
@@ -77,10 +56,18 @@ export default class TodosListService {
 
   /**
    * @param {string} todoId
+   * @param {Boolean} isLiked
+   */
+  likingItem(todoId, isLiked) {
+    this.updatingItem(todoId, {}, 'PATCH', 'like/');
+  }
+
+  /**
+   * @param {string} todoId
    * @param {Boolean} isCompleted
    */
   completingItem(todoId, isCompleted) {
-    this.updatingItem(todoId, { isCompleted: !isCompleted });
+    this.updatingItem(todoId, {}, 'PATCH', 'complete/');
   }
 
   /**
@@ -88,23 +75,7 @@ export default class TodosListService {
    * @param {string} commentTitle
    */
   commentingItem(todoId, commentTitle) {
-    return this.todosListDAO.getAllTodos()
-      .then((todos) => {
-        const index = findIndex(todoId, todos);
-
-        const result = [...todos];
-        const target = result[index];
-        const comment = {
-          id: guid(),
-          title: commentTitle,
-          date: new Date().toLocaleString(),
-        };
-
-        target.comments = [...target.comments, comment];
-
-        return this.todosListDAO.saveAllTodos(result);
-      })
-      .then(() => todoId);
+    this.updatingItem(todoId, { title: commentTitle }, 'PATCH', 'addComments/');
   }
 
   /**
@@ -112,18 +83,6 @@ export default class TodosListService {
    * @param {string} commentId
    */
   removeComment(todoId, commentId) {
-    return this.todosListDAO.getAllTodos()
-      .then((todos) => {
-        const index = findIndex(todoId, todos);
-
-        const result = [...todos];
-        const target = result[index];
-
-        const indexComment = findIndex(commentId, target.comments);
-        target.comments.splice(indexComment, 1);
-
-        return this.todosListDAO.saveAllTodos(result);
-      })
-      .then(() => todoId);
+    this.updatingItem(todoId, { id: commentId }, 'PATCH', 'deleteComments/');
   }
 }

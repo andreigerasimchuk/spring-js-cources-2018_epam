@@ -6,7 +6,7 @@ const listService = new ItemListService(DAO);
 
 const remove = (req, res, next) => {
   const { _id } = req.params;
-  console.log(_id)
+  
   listService
     .removeItem(_id)
     .then((result) => {

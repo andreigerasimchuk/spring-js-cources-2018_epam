@@ -6,11 +6,10 @@ const DAO = require('../dao');
 const listService = new ItemListService(DAO);
 
 const create = (req, res, next) => {
-
-  const { title, discription } = req.body;
+  const { title, description } = req.body;
 
   listService
-    .createItem({ title, discription })
+    .createItem({ title, description })
     .then(item => {
       res.status(200).json({ item });
     })

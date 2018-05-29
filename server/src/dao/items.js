@@ -25,8 +25,7 @@ const createItem = (data) => {
 const removeItem = async (_id) => {
   return new Promise( async (resolve, reject) => {
     try {
-      const item = await Item.findOneAndRemove(_id);
-      console.log(item)
+      const item = await Item.findOneAndRemove({ _id });
       resolve({ item: item, message: 'ok'});
     } catch (err) {
       reject({ item: null, message: err });
@@ -49,7 +48,6 @@ const getItem = async(_id) => {
   return new Promise( async (resolve, reject) => {
     try {
       const item = await Item.findById({ _id });
-      console.log('find by id', item)
       resolve({ item, message: 'ok'});
     } catch (err) {
       reject({ item: null, message:err });

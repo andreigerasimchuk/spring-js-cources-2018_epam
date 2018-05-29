@@ -5,7 +5,7 @@ const update = require('./update');
 const remove = require('./remove');
 const like = require('./like');
 const complete = require('./complete');
-const addComments = require('./addComments');
+const comments = require('./comments');
 
 
 module.exports = {
@@ -16,5 +16,5 @@ module.exports = {
   update,
   like,
   complete,
-  addComments,
+  comments,
 }

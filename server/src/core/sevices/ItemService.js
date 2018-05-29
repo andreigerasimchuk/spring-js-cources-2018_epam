@@ -1,4 +1,4 @@
-const guid = require('../util');
+const { guid } = require('../util');
 
 class ItemService {
   create(data) {
@@ -24,8 +24,8 @@ class ItemService {
   }
 
   getCleanItem(item) {
-    const { title, discription, isLiked, isCompleted, createdDate, comments } = item;
-    return { title, discription, isLiked, isCompleted, createdDate, comments };
+    const { title, description, isLiked, isCompleted, createdDate, comments } = item;
+    return { title, description, isLiked, isCompleted, createdDate, comments };
   }
 }
 

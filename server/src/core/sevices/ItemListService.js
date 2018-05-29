@@ -1,5 +1,5 @@
 const ItemService = require('./ItemService');
-const guid = require('../util');
+const { guid, findIndex} = require('../util');
 
 const itemService = new ItemService();
 
@@ -27,10 +27,8 @@ class ItemListService {
   }
 
   update(_id, item, change) {
-    console.log(change)
     const cleanItem = itemService.getCleanItem(item);
     const updatedItem = itemService.update(change, cleanItem);
-    console.log(updatedItem)
     return this.itemsDAO
       .updateItem(_id, updatedItem)
       .then(item => {
@@ -44,8 +42,8 @@ class ItemListService {
   updateItem(_id, change) {
     return this.itemsDAO
       .getItem(_id)
-      .then(item => {
-        return this.update(_id, item, change);
+      .then(data => {
+        return this.update(_id, data.item, change);
       })
       .catch(err => {
         return { item: null, message: err };
@@ -53,13 +51,10 @@ class ItemListService {
   }
 
   likeItem(_id) {
-    console.log(_id);
     return this.itemsDAO
       .getItem(_id)
       .then(data => {
-        const item = data.item;
-        console.log(data.item);
-        return this.update(_id, item, { isLiked: !item.isLiked});
+        return this.update(_id, data.item, { isLiked: !data.item.isLiked});
       })
       .catch(err => {
         return { item: null, message: err };
@@ -69,8 +64,8 @@ class ItemListService {
   completeItem(_id) {
     return this.itemsDAO
       .getItem(_id)
-      .then(item => {
-        return this.update(_id, item, { isCompleted: !item.isCompleted});
+      .then(data => {
+        return this.update(_id, data.item, { isCompleted: !data.item.isCompleted});
       })
       .catch(err => {
         return { item: null, message: err };
@@ -80,19 +75,32 @@ class ItemListService {
   addComment(_id, title) {
     return this.itemsDAO
     .getItem(_id)
-    .then(item => {
+    .then(data => {
       const comment = {
         title,
         id: guid(),
       };
-      let comments = [...item.comments, comment]
-      return this.update(_id, item, { comments });
+      let comments = [...data.item.comments, comment]
+      return this.update(_id, data.item, { comments });
     })
     .catch(err => {
       return { item: null, message: err };
     });
   }
 
+  deleteComment(_id, commentId) {
+    return this.itemsDAO
+    .getItem(_id)
+    .then(data => {
+      let comments = [...data.item.comments];
+      const index = findIndex(commentId, comments);
+      comments.splice(index, 1);
+      return this.update(_id, data.item, { comments });
+    })
+    .catch(err => {
+      return { item: null, message: err };
+    });
+  }
 }
 
 module.exports = ItemListService;

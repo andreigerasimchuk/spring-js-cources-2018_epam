@@ -7,4 +7,11 @@ const guid = () => {
   return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
 }
 
-module.exports = guid;
+const findIndex = (id, data) => {
+  return data.findIndex(item => item.id === id);
+}
+
+module.exports = {
+  guid,
+  findIndex
+}
