@@ -16,7 +16,7 @@ router.delete('/:_id', validateGetItem, remove);
 
 router.patch('/like/:_id', validateGetItem, like);
 router.patch('/complete/:_id', validateGetItem, complete);
-router.patch('/addComments/:_id',  comments.addComment); // todo
-router.patch('/deleteComments/:_id', comments.deleteComment);
+router.patch('/addComments/:_id', validateGetItem, validateCreateItem, comments.addComment);
+router.patch('/deleteComments/:_id', validateGetItem, comments.deleteComment);
 
 module.exports = router;
