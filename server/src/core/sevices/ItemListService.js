@@ -27,8 +27,10 @@ class ItemListService {
   }
 
   update(_id, item, change) {
+    console.log(change)
     const cleanItem = itemService.getCleanItem(item);
     const updatedItem = itemService.update(change, cleanItem);
+    console.log(updatedItem)
     return this.itemsDAO
       .updateItem(_id, updatedItem)
       .then(item => {
@@ -51,9 +53,12 @@ class ItemListService {
   }
 
   likeItem(_id) {
+    console.log(_id);
     return this.itemsDAO
       .getItem(_id)
-      .then(item => {
+      .then(data => {
+        const item = data.item;
+        console.log(data.item);
         return this.update(_id, item, { isLiked: !item.isLiked});
       })
       .catch(err => {

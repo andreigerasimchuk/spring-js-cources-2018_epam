@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 let itemSchema = mongoose.Schema({
     id: String,
     title: String,
-    discription: String,
+    description: String,
     isLiked: Boolean,
     isCompleted: Boolean,
     createdDate: String,

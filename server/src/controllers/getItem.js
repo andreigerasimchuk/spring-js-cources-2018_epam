@@ -4,7 +4,7 @@ const DAO = require('../dao');
 
 const listService = new ItemListService(DAO);
 
-const getItem = (req, res) => {
+const getItem = (req, res, next) => {
   const { _id } = req.params;
   listService
     .getItem(_id)

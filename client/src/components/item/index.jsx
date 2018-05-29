@@ -14,7 +14,7 @@ class Item extends Component {
   };
   render() {
     const {
-      id,
+      _id,
       title,
       description,
       isLiked,
@@ -28,7 +28,7 @@ class Item extends Component {
         {context => (
           <li className="list__item" >
             <ItemTitle
-              id={id}
+              id={_id}
               title={title}
               isLiked={isLiked}
               isCompleted={isCompleted}
@@ -40,13 +40,13 @@ class Item extends Component {
               handleCompletingItem={context.handleCompletingItem}
             />
             <ItemDescription
-              id={id}
+              id={_id}
               comments={comments}
               description={description}
             />
             {this.state.isUpdating &&
               <ItemUpdate
-                id={id}
+                id={_id}
                 title={title}
                 description={description}
                 onClose={this.handleOnUpdate}

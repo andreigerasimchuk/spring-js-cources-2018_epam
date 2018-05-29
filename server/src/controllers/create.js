@@ -5,7 +5,7 @@ const DAO = require('../dao');
 
 const listService = new ItemListService(DAO);
 
-const create = (req, res) => {
+const create = (req, res, next) => {
 
   const { title, discription } = req.body;
 

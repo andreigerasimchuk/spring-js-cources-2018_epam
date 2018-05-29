@@ -48,7 +48,7 @@ export default class LocalStorageTodosListDAO {
       },
     })
       .then(res => res.json())
-      .then(res => res.id)
+      .then(res => res.item)
       .catch(err => null);
   }
 

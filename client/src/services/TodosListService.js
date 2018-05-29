@@ -26,10 +26,10 @@ export default class TodosListService {
    */
   removeTodoItem(todoId) {
     this.todosListDAO.updateItem(todoId, 'DELETE', '')
-      .then((id) => {
-        if (id !== null) {
+      .then((item) => {
+        if (item !== null) {
           const items = this.todosListDAO.getAll();
-          const index = findIndex(id, items);
+          const index = findIndex(item.id, items);
           const result = [...items];
           result.splice(index, 1);
           this.todosListDAO.saveAllTodos(result);
@@ -62,7 +62,17 @@ export default class TodosListService {
    * @param {Boolean} isLiked
    */
   likingItem(todoId, isLiked) {
-    this.updatingItem(todoId, { isLiked: !isLiked });
+    // this.updatingItem(todoId, { isLiked: !isLiked });
+    this.todosListDAO.updateItem(todoId, 'PATCH', 'like/')
+      .then((item) => {
+        if (item !== null) {
+          const items = this.todosListDAO.getAll();
+          const index = findIndex(item.id, items);
+          const result = [...items];
+          result.splice(index, 1, item);
+          this.todosListDAO.saveAllTodos(result);
+        }
+      });
   }
 
   /**
