@@ -1,4 +1,4 @@
-export default class LocalStorageTodosListDAO {
+export default class TodosListDAO {
   listeners = null;
   list = null;
 
@@ -60,8 +60,8 @@ export default class LocalStorageTodosListDAO {
   }
 
   /**
-     * @param {TodoObject[]} todos
-     */
+  * @param {TodoObject[]} todos
+  */
   saveAllTodos(todos) {
     try {
       this.list = [...todos];

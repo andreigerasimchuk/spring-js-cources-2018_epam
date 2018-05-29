@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ListContainer } from './list-container';
 
-import LocalStorageTodosListDAO from '../dao/LocalStorageTodosListDAO';
+import TodosListDAO from '../dao/TodosListDAO';
 import { TodosListService, TodoService } from '../services';
 
 
@@ -11,7 +11,7 @@ export class ListDataContainer extends Component {
   };
 
   componentWillMount() {
-    this.todosListDAO = new LocalStorageTodosListDAO();
+    this.todosListDAO = new TodosListDAO();
     this.todoService = new TodoService();
     this.todosListService = new TodosListService(this.todosListDAO, this.todoService);
   }
