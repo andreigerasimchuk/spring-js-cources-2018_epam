@@ -10,11 +10,11 @@ const addComment = (req, res, next) => {
   
   listService
     .addComment(_id, title)
-    .then(result => {
-      if (result.item === null) {
+    .then(item => {
+      if (item === null) {
         next(new TodoNotFoundError(_id));
       } else {
-        res.status(200).json({ item: result.item });
+        res.status(200).json({ item });
       }
     })
     .catch(err => {
@@ -27,11 +27,11 @@ const deleteComment = (req, res, next) => {
   const { id } = req.body;
   listService
     .deleteComment(_id, id)
-    .then(result => {
-      if (result.item === null) {
+    .then(item => {
+      if (item === null) {
         next(new TodoNotFoundError(_id));
       } else {
-        res.status(200).json({ item: result.item });
+        res.status(200).json({ item });
       }
     })
     .catch(err => {

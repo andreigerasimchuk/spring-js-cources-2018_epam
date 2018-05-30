@@ -43,12 +43,12 @@ export default class TodosListService {
    */
   updatingItem(todoId, data, metod = 'PATCH', apiPath = '') {
     this.todosListDAO.updateItem(todoId, metod, apiPath, data)
-      .then((item) => {
-        if (item !== null) {
+      .then((value) => {
+        if (value.item !== null) {
           const items = this.todosListDAO.getAll();
-          const index = findIndex(item.id, items);
+          const index = findIndex(value.item.id, items);
           const result = [...items];
-          result.splice(index, 1, item);
+          result.splice(index, 1, value.item);
           this.todosListDAO.saveAllTodos(result);
         }
       });

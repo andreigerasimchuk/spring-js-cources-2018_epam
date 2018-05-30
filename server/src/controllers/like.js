@@ -9,11 +9,11 @@ const like = (req, res, next) => {
   
   listService
     .likeItem(_id)
-    .then(result => {
-      if (result.item === null) {
+    .then(item => {
+      if (item === null) {
         next(new TodoNotFoundError(_id));
       } else {
-        res.status(200).json({ item: result.item });
+        res.status(200).json({ item });
       }
     })
     .catch(err => {

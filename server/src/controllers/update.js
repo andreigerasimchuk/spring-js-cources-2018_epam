@@ -10,11 +10,11 @@ const update = (req, res, next) => {
 
   listService
     .updateItem(_id, { title, description })
-    .then(result => {
-      if (result.item === null) {
+    .then(item => {
+      if (item === null) {
         next(new TodoNotFoundError(_id));
       } else {
-        res.status(200).json({ item: result.item });
+        res.status(200).json({ item });
       }
     })
     .catch(err => {

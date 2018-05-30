@@ -10,10 +10,10 @@ const getItem = (req, res, next) => {
   listService
     .getItem(_id)
     .then((result) => { 
-      if(result.item === null) {
+      if(item === null) {
         next(new TodoNotFoundError(_id));
       } else {
-        res.status(200).json({ item: result.item });
+        res.status(200).json({ item });
       }
     })
     .catch(err => {
