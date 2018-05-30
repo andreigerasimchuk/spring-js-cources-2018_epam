@@ -22,7 +22,7 @@ const createItem = (data) => {
   });
 }
 
-const removeItem = async (_id) => {
+const removeItem = (_id) => {
   return new Promise( async (resolve, reject) => {
     try {
       const item = await Item.findOneAndRemove({ _id });
@@ -33,10 +33,10 @@ const removeItem = async (_id) => {
   });
 }
 
-const updateItem = async (_id, change) => {
+const updateItem = (_id, change) => {
   return new Promise( async (resolve, reject) => {
     try {
-      const item = await Item.findByIdAndUpdate({ _id }, change, { "new": true});
+      const item = await Item.findByIdAndUpdate({ _id }, change, { 'new': true});
       resolve(item);
     } catch (err) {
       reject(err)
@@ -44,7 +44,7 @@ const updateItem = async (_id, change) => {
   });
 }
 
-const getItem = async(_id) => {
+const getItem = (_id) => {
   return new Promise( async (resolve, reject) => {
     try {
       const item = await Item.findById({ _id });

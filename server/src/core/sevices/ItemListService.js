@@ -74,32 +74,32 @@ class ItemListService {
 
   addComment(_id, title) {
     return this.itemsDAO
-    .getItem(_id)
-    .then(data => {
-      const comment = {
-        title,
-        id: guid(),
-      };
-      let comments = [...data.item.comments, comment]
-      return this.update(_id, data.item, { comments });
-    })
-    .catch(err => {
-      return { item: null, message: err };
-    });
+      .getItem(_id)
+      .then(data => {
+        const comment = {
+          title,
+          id: guid(),
+        };
+        let comments = [...data.item.comments, comment];
+        return this.update(_id, data.item, { comments });
+      })
+      .catch(err => {
+        return { item: null, message: err };
+      });
   }
 
   deleteComment(_id, commentId) {
     return this.itemsDAO
-    .getItem(_id)
-    .then(data => {
-      let comments = [...data.item.comments];
-      const index = findIndex(commentId, comments);
-      comments.splice(index, 1);
-      return this.update(_id, data.item, { comments });
-    })
-    .catch(err => {
-      return { item: null, message: err };
-    });
+      .getItem(_id)
+      .then(data => {
+        let comments = [...data.item.comments];
+        const index = findIndex(commentId, comments);
+        comments.splice(index, 1);
+        return this.update(_id, data.item, { comments });
+      })
+      .catch(err => {
+        return { item: null, message: err };
+      });
   }
 }
 
